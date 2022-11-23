@@ -1,9 +1,10 @@
 import './App.css';
+import Homepage from './pages/Homepage/Homepage';
 
 function App() {
   return (
     <div>
-      <button class="btn w-64 rounded-full">Button</button>
+      <Homepage/>
     </div>
   );
 }
