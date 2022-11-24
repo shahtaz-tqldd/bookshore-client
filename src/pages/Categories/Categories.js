@@ -3,7 +3,7 @@ import CategoryCard from './components/CategoryCard'
 import book1 from '../../assets/icons/book1.png'
 import book2 from '../../assets/icons/book2.png'
 import book3 from '../../assets/icons/book3.png'
-import book4 from '../../assets/icons/book4.png'
+import book4 from '../../assets/icons/book6.png'
 import book5 from '../../assets/icons/book5.png'
 
 const Categories = () => {

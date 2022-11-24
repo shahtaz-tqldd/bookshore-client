@@ -6,7 +6,7 @@ import book2 from '../../../assets/images/book2.png'
 const Services = () => {
     return (
         <>
-            <h1 className='mt-16 mb-12 text-center text-5xl'>Services</h1>
+            <h1 className='mt-16 mb-12 text-center font-bold text-5xl'>Services</h1>
             <div className="hero">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="w-full md:w-1/2 lg:w-2/5 mx-4">

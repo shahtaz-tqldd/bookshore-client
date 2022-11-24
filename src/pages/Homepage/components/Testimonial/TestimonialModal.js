@@ -17,7 +17,7 @@ const TestimonialModal = () => {
                         <option>4</option>
                         <option>5</option>
                     </select>
-                    <textarea className="textarea textarea-accent w-full mt-4 h-40" placeholder="Your Comments"></textarea>
+                    <textarea className="textarea textarea-accent w-full mt-4 h-40" maxlength="200" placeholder="Your Comments"></textarea>
                     <button className="btn btn-active btn-accent mt-5 w-full text-white">Submit</button>
                 </div>
             </div>

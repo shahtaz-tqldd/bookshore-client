@@ -5,9 +5,8 @@ import book3 from '../../../assets/icons/book3.png'
 import book5 from '../../../assets/icons/book5.png'
 import book4 from '../../../assets/icons/book4.png'
 import Slider from 'react-slick';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import CategoryCard from '../../Categories/components/CategoryCard'
+import { categorySettings } from '../../../tools/Slider'
 
 const CategoriesHome = () => {
     const categories = [
@@ -42,47 +41,10 @@ const CategoriesHome = () => {
             "img": book5
         }
     ]
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 3000,
-        pauseOnHover: true,
-        initialSlide: 3,
-        responsive: [
-            {
-              breakpoint: 1024,
-              settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                infinite: true,
-                dots: true
-              }
-            },
-            {
-              breakpoint: 600,
-              settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2,
-                initialSlide: 2
-              }
-            },
-            {
-              breakpoint: 480,
-              settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1
-              }
-            }
-          ]
-    };
     return (
         <>
-        <h1 className='mt-16 mb-12 text-center text-5xl'>Categories</h1>
-            <Slider {...settings}>
+        <h1 className='mt-16 mb-12 text-center font-bold text-5xl'>Categories</h1>
+            <Slider {...categorySettings}>
                 {
                     categories.map(category => <CategoryCard key={category.id} details={category} />)
                 }
