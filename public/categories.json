@@ -1,0 +1,22 @@
+[
+    {
+        "id":1,
+        "categoryName": "Novel",
+        "catImg": ""
+    },
+    {
+        "id":2,
+        "categoryName": "Poetry",
+        "catImg": ""
+    },
+    {
+        "id":3,
+        "categoryName": "Academic",
+        "catImg": ""
+    },
+    {
+        "id":4,
+        "categoryName": "Research and Journal Paper",
+        "catImg": ""
+    }
+]

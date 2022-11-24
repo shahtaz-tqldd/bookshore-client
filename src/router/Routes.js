@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import Categories from "../pages/Categories/Categories";
 import Erropage from "../pages/Erropage/Erropage";
 import Homepage from "../pages/Homepage/Homepage";
 import Login from "../pages/LoginRegister/Login";
@@ -16,6 +17,10 @@ export const routes = createBrowserRouter([
             {
                 path: '/login',
                 element: <Login/>
+            },
+            {
+                path: '/categories',
+                element: <Categories/>
             },
             {
                 path: '*',
