@@ -34,16 +34,16 @@ const Categories = () => {
         },
         {
             "id":5,
-            "categoryName": "Research and Journal Paper",
+            "categoryName": "Research and Journal",
             "detail": "Find this books of category in here",
             "img": book5
         }
     ]
     return (
         <div className='max-w-[1200px] mx-auto'>
-            <h1>Categories</h1>
-            
-            <div className='grid lg:grid-cols-3 gap-6'>
+            <h1 className='mt-12 text-4xl font-bold'>Buy Books</h1>
+            <p className='mt-2 text-lg'>from your favourite collection</p>
+            <div className='grid lg:grid-cols-3 my-16'>
                 {categories.map(category => <CategoryCard key={category.id} details={category} />)}
             </div>
         </div>

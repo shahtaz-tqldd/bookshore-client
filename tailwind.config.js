@@ -12,7 +12,8 @@ module.exports = {
         themeBookshore: {
           primary: "#6ECCAF",
           secondary: "#ADE792",
-          accent: "#344D67",
+          accent: "#47B5FF",
+          // accent: "#344D67",
           neutral: "#fefefe",
           "base-100": "#fff",
         },

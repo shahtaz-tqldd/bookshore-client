@@ -38,9 +38,9 @@ const Testimonial = () => {
             <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6'>
                 {reviews.map(review => <TestimonialCard key={review.id} review={review} />)}
             </div>
-            <div className='mt-16 text-center'>
-                <p>Want to Say Something about Bookshore?</p>
-                <label htmlFor="testimonial-modal" className="btn btn-sm btn-outline btn-accent text-white mt-4 rounded-full">Write a Review</label>
+            <div className='mt-24 text-center'>
+                <h2 className='text-xl font-bold'>Want to Say Something about Bookshore?</h2>
+                <label htmlFor="testimonial-modal" className="btn btn-sm pb-6 pt-3 w-40 btn-outline btn-accent text-white mt-4 rounded-full">Write a Review</label>
                 <TestimonialModal />
             </div>
         </div>
