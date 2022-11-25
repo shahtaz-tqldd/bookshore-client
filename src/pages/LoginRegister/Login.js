@@ -1,7 +1,7 @@
 import React from 'react'
 import login from '../../assets/images/login.png'
-import google from '../../assets/icons/google.png'
 import { Link } from 'react-router-dom'
+import StartWithGoogle from './StartWithGoogle'
 
 const Login = () => {
   return (
@@ -33,9 +33,7 @@ const Login = () => {
               <button className="btn btn-primary text-white">Login</button>
             </div>
             <span className='text-center'>or</span>
-            <div className="form-control mt-2">
-              <button className="btn btn-accent btn-outline"><img src={google} alt="google" className='w-6'/> &nbsp;&nbsp;Login With Google</button>
-            </div>
+            <StartWithGoogle />
             <p className='mt-4'>New to BookShore? <Link to='/register' className='text-accent'>Open Account</Link></p>
           </div>
         </div>
