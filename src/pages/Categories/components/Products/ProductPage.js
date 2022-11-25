@@ -40,12 +40,12 @@ const ProductPage = () => {
 
     ]
     return (
-        <div className='max-w-[1200px] mx-auto'>
+        <div className='max-w-[1200px] mx-auto px-4 md:px-12'>
             <h1 className='mt-12 text-4xl font-bold'>Novel</h1>
             <p className='mt-2 text-lg'>Read more novel and enrich your literature</p>
             <div className='flex mt-12 mb-24'>
-                <div className='lg:w-3/4'>
-                    <div className='grid grid-cols-2 gap-4'>
+                <div className='lg:w-3/4 w-full'>
+                    <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
                         {
                             products.map(product => <ProductCard
                                 key={product.id}
@@ -56,7 +56,7 @@ const ProductPage = () => {
                     </div>
                 </div>
 
-                <div className='lg:w-1/4 pl-6'>
+                <div className='lg:w-1/4 hidden lg:block pl-6'>
                     <div className="btn-group bg-base-100 btn-group-vertical flex">
                         <h2 className='my-4 text-lg font-bold px-3'>Browse More Collection</h2>
                         <button className="btn btn-active">Novel</button>

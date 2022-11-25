@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../context/AuthProvider'
 
@@ -15,7 +16,20 @@ const Navbar = () => {
 
     const handleLogOut = () => {
         logout()
-            .then(() => { setUser(null) })
+            .then(() => {
+                setUser(null)
+                toast.success("You are logged out!", {
+                    style: {
+                        border: '1px solid #000',
+                        padding: '16px 20px',
+                        color: '#e3b50e',
+                    },
+                    iconTheme: {
+                        primary: '#e3b50e',
+                        secondary: '#FFFAEE',
+                    },
+                })
+            })
             .catch(err => console.error(err))
     }
     return (

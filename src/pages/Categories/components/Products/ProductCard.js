@@ -6,10 +6,10 @@ const ProductCard = ({ product, setProduct }) => {
     const { productName, location, resalePrice, originalPrice, picture, used, sellerName } = product
     return (
         <div className="card card-side bg-base-100 shadow-xl p-3">
-            <figure className="w-1/3"><img src={picture} alt={productName} className="rounded-2xl h-full" /></figure>
-            <div className="w-2/3 mx-3 flex flex-col">
+            <figure className="w-[40%]"><img src={picture} alt={productName} className="rounded-2xl h-full" /></figure>
+            <div className="w-[60%] mx-3 flex flex-col">
                 <h2 className="card-title">{productName}</h2>
-                <p className='text-primary mt-auto'>Resale Price: <span className='text-2xl font-bold '>{resalePrice} Taka</span></p>
+                <p className='text-primary mt-auto'>Resale Price: <span className='lg:text-2xl md:text-2xl text-xl font-bold '>{resalePrice} Taka</span></p>
                 <small className=''>Original Price: {originalPrice} Taka | Used: {used}</small>
                 <div className='my-2'>
                     <span className='flex items-center'>

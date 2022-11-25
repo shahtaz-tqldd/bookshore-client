@@ -1,5 +1,6 @@
-import React, { useContext, useState } from 'react'
 import login from '../../assets/images/login.png'
+import React, { useContext, useState } from 'react'
+import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import StartWithGoogle from './StartWithGoogle'
@@ -22,6 +23,7 @@ const Login = () => {
       .then(result => {
         console.log(result.user)
         setLoginError('')
+        toast.success("You are successfully Login")
         navigate(from, {replace: true})
       })
       .catch(err => {
