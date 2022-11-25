@@ -11,43 +11,44 @@ import Register from "../pages/LoginRegister/Register";
 import SellBooks from "../pages/SellBooks/SellBooks";
 import DashboardLayout from "./layouts/DashboardLayout";
 import Main from "./layouts/Main";
+import PrivateRoute from "./PrivateRoute";
 
 export const routes = createBrowserRouter([
     {
         path: '/',
-        element: <Main/>,
+        element: <Main />,
         children: [
             {
                 path: '/',
-                element: <Homepage/>
+                element: <Homepage />
             },
             {
                 path: '/categories',
-                element: <Categories/>
+                element: <Categories />
             },
             {
                 path: '/categories/:id',
-                element: <ProductPage/>
+                element: <PrivateRoute><ProductPage /></PrivateRoute>
             },
             {
                 path: '/sell-books',
-                element: <SellBooks/>
+                element: <PrivateRoute><SellBooks /></PrivateRoute>
             },
             {
                 path: '/blogs',
-                element: <Blogpage/>
+                element: <Blogpage />
             },
             {
                 path: '/blogs/:id',
-                element: <BlogDetails/>
+                element: <BlogDetails />
             },
             {
                 path: '/login',
-                element: <Login/>
+                element: <Login />
             },
             {
                 path: '/register',
-                element: <Register/>
+                element: <Register />
             },
             {
                 path: '*',
@@ -56,12 +57,12 @@ export const routes = createBrowserRouter([
         ]
     },
     {
-        path:'/dashboard',
-        element: <DashboardLayout/>,
+        path: '/dashboard',
+        element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
         children: [
             {
                 path: '/dashboard',
-                element: <Dashboard/>,
+                element: <Dashboard />,
             }
         ]
     }
