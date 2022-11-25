@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { AuthContext } from '../context/AuthProvider'
 
 const Navbar = () => {
+    const { user, logout } = useContext(AuthContext)
     const navMenuItems = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/categories'>Catagories</Link></li>
@@ -10,6 +12,12 @@ const Navbar = () => {
         <li><Link to='/faq'>FAQ</Link></li>
         <li><Link to='/dashboard'>Dashboard</Link></li>
     </>
+
+    const handleLogOut = () => {
+        logout()
+            .then(()=>{})
+            .catch(err=>console.error(err))
+    }
     return (
         <div className='bg-primary'>
             <div className="navbar max-w-[1200px] mx-auto">
@@ -22,7 +30,7 @@ const Navbar = () => {
                             {navMenuItems}
                         </ul>
                     </div>
-                    <Link to='/' className="btn btn-ghost normal-case text-xl"><strong>Book</strong>Shore</Link>
+                    <Link to='/' className="btn btn-ghost font-normal normal-case text-2xl"><strong>Book</strong>shore</Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal p-0">
@@ -30,7 +38,10 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <Link to='/login' className="btn btn-outline btn-sm">Sign In</Link>
+                    {
+                        user ? <button onClick={handleLogOut} className='btn btn-error text-white normal-case'>Logout</button> : <Link to='/login' className="btn btn-outline btn-sm">Sign In</Link>
+                    }
+
                 </div>
             </div>
         </div>
