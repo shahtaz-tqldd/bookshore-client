@@ -81,7 +81,7 @@ const Register = () => {
                                 <label className="label">
                                     <span className="label-text">Upload Your Photo</span>
                                 </label>
-                                <input {...register("image", { required: "Your Photo is required" })} name="image" asp-for="hello" type="file" placeholder='your photo' />
+                                <input {...register("image", { required: "Your Photo is required" })} name="image" type="file" placeholder='your photo' />
                                 {errors.image && <ErrorMessage>{errors.image.message}</ErrorMessage>}
                             </div>
                             {/* password */}

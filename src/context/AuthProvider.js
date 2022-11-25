@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react'
 import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth'
 import app from '../firebase/firebase.config'
+import { useQuery } from '@tanstack/react-query'
 
 const auth = getAuth(app)
 export const AuthContext = createContext()
@@ -42,6 +43,16 @@ const AuthProvider = ({ children }) => {
         return () => unsubscribe();
     }, [])
 
+    // product categories fetched and provide
+    const {data: categories=[]} = useQuery({
+        queryKey: ['categories'],
+        queryFn: async()=>{
+            const res = await fetch("http://localhost:5000/categories")
+            const data = await res.json()
+            return data
+        }
+    })
+
     const authInfo = {
         googleLogin,
         emailLogin,
@@ -51,8 +62,9 @@ const AuthProvider = ({ children }) => {
         setLoading,
         user,
         setUser,
-        logout
+        logout,
 
+        categories
     }
     return (
         <AuthContext.Provider value={authInfo}>

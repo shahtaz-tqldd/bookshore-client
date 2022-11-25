@@ -1,48 +1,31 @@
+import { useQuery } from '@tanstack/react-query'
 import React, { useState } from 'react'
+import { useLoaderData } from 'react-router-dom'
 import useTitle from '../../../../hooks/useTitle'
 import ProductCard from './ProductCard'
 import ProductModal from './ProductModal'
 
 const ProductPage = () => {
     useTitle('Product')
-    const [product, setProduct] = useState(null)
-    const products = [
-        {
-            "id": 1,
-            "productName": "The Adventure of Hucklebary Finn",
-            "location": "Dhaka, Bangladesh",
-            "resalePrice": 100,
-            "originalPrice": 250,
-            "picture": "https://149645218.v2.pressablecdn.com/wp-content/uploads/2018/02/huckleberry-finn.jpg",
-            "used": "4 months",
-            "sellerName": "Hey Man"
-        },
-        {
-            "id": 2,
-            "productName": "Harry Potter",
-            "location": "Kushtia, Bangladesh",
-            "resalePrice": 120,
-            "originalPrice": 270,
-            "picture": "https://media.harrypotterfanzone.com/deathly-hallows-us-childrens-edition.jpg",
-            "used": "3 months",
-            "sellerName": "Bye Man"
-        },
-        {
-            "id": 3,
-            "productName": "A million to One",
-            "location": "Kushtia, Bangladesh",
-            "resalePrice": 120,
-            "originalPrice": 270,
-            "picture": "https://www.designforwriters.com/wp-content/uploads/2017/10/design-for-writers-book-cover-tf-2-a-million-to-one.jpg",
-            "used": "3 months",
-            "sellerName": "Bye Man"
-        },
+    const data = useLoaderData()
+    const name = data.params.name
+    console.log(name)
 
-    ]
+    const [product, setProduct] = useState(null)
+    const url = `http://localhost:5000/products?category=${name}`
+    const {data: products =[]} = useQuery({
+        queryKey: ['products'],
+        queryFn: async()=>{
+            const res = await fetch(url)
+            const data = await res.json()
+            return data;
+        }
+    })
+
     return (
         <div className='max-w-[1200px] mx-auto px-4 md:px-12'>
-            <h1 className='mt-12 text-4xl font-bold'>Novel</h1>
-            <p className='mt-2 text-lg'>Read more novel and enrich your literature</p>
+            <h1 className='mt-12 text-4xl font-bold'>{name}</h1>
+            <p className='mt-2 text-lg'>Read more and enrich your knowledge</p>
             <div className='flex mt-12 mb-24'>
                 <div className='lg:w-3/4 w-full'>
                     <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
