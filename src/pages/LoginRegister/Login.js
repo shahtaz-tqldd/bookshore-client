@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import login from '../../assets/images/login.png'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import StartWithGoogle from './StartWithGoogle'
 import { AuthContext } from '../../context/AuthProvider'
@@ -10,6 +10,10 @@ const Login = () => {
   const { register, handleSubmit } = useForm()
   const { emailLogin } = useContext(AuthContext)
   const [loginError, setLoginError] = useState('')
+  
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || '/'
 
   const handleLogin = (data) => {
     const email = data.email
@@ -18,6 +22,7 @@ const Login = () => {
       .then(result => {
         console.log(result.user)
         setLoginError('')
+        navigate(from, {replace: true})
       })
       .catch(err => {
         console.error(err.message)

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { AuthContext } from '../context/AuthProvider'
 
 const Navbar = () => {
-    const { user, logout } = useContext(AuthContext)
+    const { user, logout, setUser } = useContext(AuthContext)
     const navMenuItems = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/categories'>Catagories</Link></li>
@@ -15,8 +15,8 @@ const Navbar = () => {
 
     const handleLogOut = () => {
         logout()
-            .then(()=>{})
-            .catch(err=>console.error(err))
+            .then(() => { setUser(null) })
+            .catch(err => console.error(err))
     }
     return (
         <div className='bg-primary'>
@@ -39,7 +39,9 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end">
                     {
-                        user ? <button onClick={handleLogOut} className='btn btn-error text-white normal-case'>Logout</button> : <Link to='/login' className="btn btn-outline btn-sm">Sign In</Link>
+                        user?.uid ?
+                            <button onClick={handleLogOut} className='btn btn-error text-white normal-case'>Logout</button>
+                            : <Link to='/login' className="btn btn-outline btn-sm">Sign In</Link>
                     }
 
                 </div>
