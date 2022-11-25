@@ -7,9 +7,32 @@ import ErrorMessage from '../../tools/ErrorMessage'
 const SellBooks = () => {
     const { categories, user } = useContext(AuthContext)
     const { register, formState: { errors }, handleSubmit } = useForm()
+    const imageHostKey = process.env.REACT_APP_imgbb_key;
     const handleGetProduct = data => {
-        const name = data.name
-        console.log(name, user.displayName)
+        const image = data.imgProduct[0]
+        const formData = new FormData()
+        formData.append('image', image)
+        const url = `https://api.imgbb.com/1/upload?&key=${imageHostKey}`
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(imgData => {
+                const imgProduct = imgData.data.url
+                const productInfo = {
+                    productName: data.name,
+                    resalePrice: data.resalePrice,
+                    originalPrice: data.originalPrice,
+                    usedPeriod: data.usedPeriod,
+                    category: data.category,
+                    imgProduct,
+                    sellerName: user.displayName,
+                    sellerEmail: user.email,
+                    location: data.location
+                }
+                console.log(productInfo)
+            })
     }
     return (
         <div className='max-w-[1200px] mx-auto'>
@@ -85,8 +108,8 @@ const SellBooks = () => {
                                     <label className="label">
                                         <span className="label-text">Upload a Book's Photo</span>
                                     </label>
-                                    <input {...register("image", { required: "Your Photo is required" })} name="image" type="file" />
-                                    {errors.image && <ErrorMessage>{errors.image.message}</ErrorMessage>}
+                                    <input {...register("imgProduct", { required: "Your Photo is required" })} name="image" type="file" />
+                                    {errors.imgProduct && <ErrorMessage>{errors.imgProduct.message}</ErrorMessage>}
                                 </div>
 
                                 {/* seller name */}
