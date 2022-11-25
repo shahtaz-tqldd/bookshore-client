@@ -32,7 +32,7 @@ const Services = () => {
                                 <h2 className="card-title">Sell your old books</h2>
                                 <p>Sell your used and old books to other. Share the enrichment of knowledge with your fellow bookworm. </p>
                                 <div className="card-actions">
-                                    <button className="btn btn-primary text-base-100 w-40">Sell Now</button>
+                                    <Link to='/sell-books'><button className="btn btn-primary text-base-100 w-40">Sell Now</button></Link>
                                 </div>
                             </div>
                         </div>

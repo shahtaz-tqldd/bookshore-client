@@ -12,7 +12,7 @@ const StartWithGoogle = () => {
     }
     return (
         <div className="form-control mt-2">
-            <button onClick={handleGoogleLogin} className="btn btn-accent btn-outline"><img src={google} alt="google" className='w-6' /> &nbsp;&nbsp;Login With Google</button>
+            <button onClick={handleGoogleLogin} className="btn btn-accent btn-outline"><img src={google} alt="google" className='w-6' /> &nbsp;&nbsp;Start With Google</button>
         </div>
     )
 }
