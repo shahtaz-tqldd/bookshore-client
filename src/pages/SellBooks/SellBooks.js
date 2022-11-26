@@ -1,3 +1,4 @@
+import { format } from 'date-fns'
 import React, { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
@@ -7,6 +8,8 @@ import ErrorMessage from '../../tools/ErrorMessage'
 
 const SellBooks = () => {
     const { categories, user } = useContext(AuthContext)
+    const postDate = format(new Date(),'PP')
+    const postTime = format(new Date(), 'p')
     const { register, formState: { errors }, handleSubmit } = useForm()
     const imageHostKey = process.env.REACT_APP_imgbb_key;
     const handleGetProduct = data => {
@@ -25,14 +28,18 @@ const SellBooks = () => {
                     const imgProduct = imgData.data.url
                     const productInfo = {
                         productName: data.name,
+                        description: data.description,
                         resalePrice: data.resalePrice,
                         originalPrice: data.originalPrice,
                         usedPeriod: data.usedPeriod,
                         category: data.category,
                         imgProduct,
+                        postDate,
+                        postTime,
                         sellerName: user.displayName,
                         sellerEmail: user.email,
-                        location: data.location
+                        phone: data.phone,
+                        location: data.location,
                     }
                     fetch("http://localhost:5000/products/",{
                         method: 'POST',
@@ -55,7 +62,7 @@ const SellBooks = () => {
             <div className="hero mt-4">
                 <div className="hero-content flex-col lg:flex-row w-full">
                     <div className="lg:w-1/2 flex flex-col lg:text-left">
-                        <div className='flex flex-row items-center'>
+                        <div className='flex flex-row items-center -mt-64'>
                             <img src={books} alt="books" className='h-[350px] -ml-16' />
                             <div className=''>
                                 <h1 className='text-5xl font-bold'>Sell Books</h1>
@@ -74,6 +81,15 @@ const SellBooks = () => {
                                     </label>
                                     <input {...register("name", { required: "You must Provide a Book Name" })} type="text" placeholder="Book's Name" className="input input-bordered" />
                                     {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
+                                </div>
+                                
+                                {/* description name */}
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Book's Description</span>
+                                    </label>
+                                    <textarea {...register("description", { required: "Say Something about this Book" })} type="text" placeholder="Say something about this book" className="input input-bordered py-2 h-32" />
+                                    {errors.description && <ErrorMessage>{errors.description.message}</ErrorMessage>}
                                 </div>
 
                                 <div className='flex flex-row gap-4'>
@@ -124,7 +140,7 @@ const SellBooks = () => {
                                     <label className="label">
                                         <span className="label-text">Upload a Book's Photo</span>
                                     </label>
-                                    <input {...register("imgProduct", { required: "Your Photo is required" })} type="file" />
+                                    <input {...register("imgProduct", { required: "Your Photo is required" })} type="file" className='w-1/2'/>
                                     {errors.imgProduct && <ErrorMessage>{errors.imgProduct.message}</ErrorMessage>}
                                 </div>
 
@@ -135,6 +151,13 @@ const SellBooks = () => {
                                     </label>
                                     <input {...register("sellerName", { required: "You must Provide your name" })} type="text" placeholder='your name' defaultValue={user.displayName} className="input input-bordered" />
                                     {errors.sellerName && <ErrorMessage>{errors.sellerName.message}</ErrorMessage>}
+                                </div>
+                                {/* seller phone number */}
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Phone Number</span>
+                                    </label>
+                                    <input {...register("phone")} type="text" placeholder='Phone Number' className="input input-bordered" />
                                 </div>
 
                                 {/* location */}
