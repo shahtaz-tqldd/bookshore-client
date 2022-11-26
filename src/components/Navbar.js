@@ -1,17 +1,20 @@
 import React, { useContext } from 'react'
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../context/AuthProvider'
 
 const Navbar = () => {
     const { user, logout, setUser } = useContext(AuthContext)
+    const navigate = useNavigate();
+    
     const navMenuItems = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/categories'>Catagories</Link></li>
         <li><Link to='/sell-books'>Sell Books</Link></li>
         <li><Link to='/blogs'>Blogs</Link></li>
         <li><Link to='/faq'>FAQ</Link></li>
-        <li><Link to='/dashboard'>Dashboard</Link></li>
+        {user?.uid && <li><Link to='/dashboard'>Dashboard</Link></li>}
+        
     </>
 
     const handleLogOut = () => {
@@ -29,11 +32,12 @@ const Navbar = () => {
                         secondary: '#FFFAEE',
                     },
                 })
+                navigate('/login')
             })
             .catch(err => console.error(err))
     }
     return (
-        <div className='bg-primary'>
+        <div className='bg-primary sticky top-0 z-10'>
             <div className="navbar max-w-[1200px] mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">

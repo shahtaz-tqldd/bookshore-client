@@ -56,9 +56,9 @@ const SellBooks = () => {
                 <div className="hero-content flex-col lg:flex-row w-full">
                     <div className="lg:w-1/2 flex flex-col lg:text-left">
                         <div className='flex flex-row items-center'>
-                            <img src={books} alt="books" className='w-2/3 -ml-24' />
-                            <div className='-ml-20 mt-32'>
-                                <h1 className='text-4xl font-bold'>Sell Books</h1>
+                            <img src={books} alt="books" className='h-[350px] -ml-16' />
+                            <div className=''>
+                                <h1 className='text-5xl font-bold'>Sell Books</h1>
                                 <p className='mt-2 text-lg'>to other that you don't need anymore</p>
                             </div>
                         </div>

@@ -5,7 +5,7 @@ import { GoPerson } from 'react-icons/go';
 const ProductCard = ({ product, setProduct }) => {
     const { productName, location, resalePrice, originalPrice, imgProduct, usedPeriod, sellerName } = product
     return (
-        <div className="card card-side bg-base-100 shadow-xl p-3">
+        <div className="card card-side bg-base-100 shadow-xl p-3 h-64">
             <figure className="w-[40%]"><img src={imgProduct} alt={productName} className="rounded-2xl h-full" /></figure>
             <div className="w-[60%] mx-3 flex flex-col">
                 <h2 className="card-title">{productName}</h2>

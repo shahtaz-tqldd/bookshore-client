@@ -42,11 +42,11 @@ const ProductPage = () => {
                 <div className='lg:w-1/4 hidden lg:block pl-6'>
                     <div className="btn-group bg-base-100 btn-group-vertical flex">
                         <h2 className='my-4 text-lg font-bold px-3'>Browse More Collection</h2>
-                        <button className="btn btn-active">Novel</button>
-                        <button className="btn">Poetry</button>
-                        <button className="btn">Non Fiction</button>
-                        <button className="btn">Academic</button>
-                        <button className="btn">Journal and Research</button>
+                        <button className={`btn ${name ==='Novel' && 'btn-active'}`}>Novel</button>
+                        <button className={`btn ${name ==='Poetry' && 'btn-active'}`}>Poetry</button>
+                        <button className={`btn ${name ==='Non Fiction' && 'btn-active'}`}>Non Fiction</button>
+                        <button className={`btn ${name ==='Academic' && 'btn-active'}`}>Academic</button>
+                        <button className={`btn ${name ==='Research and Journal' && 'btn-active'}`}>Research and Journal</button>
                     </div>
                 </div>
             </div>

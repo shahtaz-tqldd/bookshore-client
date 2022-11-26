@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import toast from 'react-hot-toast'
 import { useLocation, useNavigate } from 'react-router-dom'
 import google from '../../assets/icons/google.png'
 import { AuthContext } from '../../context/AuthProvider'
@@ -9,14 +10,35 @@ const StartWithGoogle = () => {
     const navigate = useNavigate()
     const from = location.state?.from?.pathname || '/';
 
-    const handleGoogleLogin =(e)=>{
+    const handleGoogleLogin = (e) => {
         e.preventDefault()
         googleLogin()
-            .then(result=>{
-                console.log(result)
-                navigate(from, {replace: true})
+            .then(result => {
+                const userInfo = {
+                    displayName: result.user.displayName,
+                    email: result.user.email,
+                    photoURL: result.user.photoURL,
+                    userType: 'Buyer'
+                }
+                addUserToDB(userInfo)
+
+                navigate(from, { replace: true })
             })
-            .catch(err=>console.error(err))
+            .catch(err => console.error(err))
+    }
+    const addUserToDB = (userInfo) => {
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(userInfo)
+        })
+            .then(res => res.json())
+            .then(() => {
+                toast.success("You are successfully Login")
+                navigate('/')
+            })
     }
     return (
         <div className="form-control mt-2">

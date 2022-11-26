@@ -1,42 +1,71 @@
 import React, { useContext } from 'react'
 import registerImg from '../../assets/images/register.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import StartWithGoogle from './StartWithGoogle'
 import { AuthContext } from '../../context/AuthProvider'
 import './file.css'
 import ErrorMessage from '../../tools/ErrorMessage'
+import toast from 'react-hot-toast'
 
 
 const Register = () => {
     const { createUser, updateUser } = useContext(AuthContext)
     const { register, formState: { errors }, handleSubmit } = useForm()
+    const navigate = useNavigate();
+    const imageHostKey = process.env.REACT_APP_imgbb_key
+
     const handleCreateUser = data => {
         const email = data.email
         const password = data.password
-
         const name = data.name
         const userType = data.userType
-        // const image = data.image[0]
-        const image = "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg"
 
-        const userInfo = {
-            displayName: name,
-            userType,
-            photoURL: image
-        }
-
-        console.log(email, password, userType, image, name)
-        createUser(email, password)
-            .then(result => {
-                const user = result.user
-                console.log(user)
-                updateUser(userInfo)
-                    .then(() => { })
-                    .catch(err => console.error(err))
+        const image = data.image[0]
+        const formData = new FormData()
+        formData.append('image', image)
+        fetch(`https://api.imgbb.com/1/upload?&key=${imageHostKey}`, {
+            method: 'POST',
+            body: formData
+        }).then(res => res.json())
+            .then(imgData => {
+                if (imgData.success) {
+                    const photoURL = imgData.data.url;
+                    const userInfo = {
+                        displayName: name,
+                        userType,
+                        photoURL
+                    }
+                    createUser(email, password)
+                        .then(result => {
+                            const user = result.user
+                            console.log(user)
+                            updateUser(userInfo)
+                                .then(() => {
+                                    const dbUserInfo = {...userInfo, email, }
+                                    addUserToDB(dbUserInfo)
+                                })
+                                .catch(err => console.error(err))
+                        })
+                        .then(err => console.error(err))
+                }
             })
-            .then(err => console.error(err))
+
     }
+    const addUserToDB=(userInfo)=>{
+        fetch('http://localhost:5000/users',{
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(userInfo)
+        })
+        .then(res=>res.json())
+        .then(()=>{
+            toast.success("User Registered successfully")
+            navigate('/')
+        })
+    } 
     return (
         <div className="hero mt-6 mb-16">
             <div className="hero-content flex-col lg:flex-row-reverse w-full">

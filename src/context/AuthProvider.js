@@ -52,7 +52,10 @@ const AuthProvider = ({ children }) => {
             return data
         }
     })
+     // user fetched from db and provide
 
+     
+    
     const authInfo = {
         googleLogin,
         emailLogin,
@@ -63,8 +66,7 @@ const AuthProvider = ({ children }) => {
         user,
         setUser,
         logout,
-
-        categories
+        categories,
     }
     return (
         <AuthContext.Provider value={authInfo}>
