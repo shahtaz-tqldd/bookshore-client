@@ -14,7 +14,7 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <ScrollToTop smooth color='' style={{paddingLeft:"5px", backgroundColor:"#FF6F87"}}/>
+        <ScrollToTop smooth color='' style={{ paddingLeft: "5px", backgroundColor: "#FF6F87" }} />
         <App />
       </AuthProvider>
     </QueryClientProvider>

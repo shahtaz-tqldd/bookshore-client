@@ -13,13 +13,13 @@ const DashboardLayout = () => {
         <div>
             <Navbar/>
             <div className="drawer drawer-mobile">
-                <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+                <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content mt-8 lg:ml-12 ml-4">
-                    <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
+                    <label htmlFor="dashboard-drawer" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
                     <Outlet />
                 </div>
-                <div className="drawer-side">
-                    <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
+                <div className="drawer-side z-0">
+                    <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 bg-base-100 text-base-content">
                         {dashboardMenu}
                     </ul>

@@ -2,19 +2,21 @@ import React, { useContext } from 'react'
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../context/AuthProvider'
+import useSeller from '../hooks/useSeller';
 
 const Navbar = () => {
     const { user, logout, setUser } = useContext(AuthContext)
+    const [isSeller] = useSeller(user?.email)
     const navigate = useNavigate();
-    
+
     const navMenuItems = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/categories'>Catagories</Link></li>
-        <li><Link to='/sell-books'>Sell Books</Link></li>
+        { isSeller && <li><Link to='/sell-books'>Sell Books</Link></li> }
         <li><Link to='/blogs'>Blogs</Link></li>
         <li><Link to='/faq'>FAQ</Link></li>
         {user?.uid && <li><Link to='/dashboard'>Dashboard</Link></li>}
-        
+
     </>
 
     const handleLogOut = () => {

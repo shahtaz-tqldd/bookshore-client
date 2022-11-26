@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { Navigate, useLocation } from 'react-router-dom';
+import Loader from '../components/Loader';
 import { AuthContext } from '../context/AuthProvider'
 
 const PrivateRoute = ({ children }) => {
@@ -7,11 +8,7 @@ const PrivateRoute = ({ children }) => {
     const location = useLocation()
     
     if (loading) {
-        return (
-            <div className='flex my-64'>
-                <button className="btn bg-base-200 border-none font-normal normal-case text-5xl text-error loading mx-auto">Loading...</button>
-            </div>
-        )
+        return <Loader/>
     }
     if (user) {
         return children;

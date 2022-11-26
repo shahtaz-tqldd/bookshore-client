@@ -12,6 +12,7 @@ import SellBooks from "../pages/SellBooks/SellBooks";
 import DashboardLayout from "./layouts/DashboardLayout";
 import Main from "./layouts/Main";
 import PrivateRoute from "./PrivateRoute";
+import SellerRoute from "./SellerRoute";
 
 export const routes = createBrowserRouter([
     {
@@ -29,11 +30,11 @@ export const routes = createBrowserRouter([
             {
                 path: '/categories/:name',
                 element: <PrivateRoute><ProductPage /></PrivateRoute>,
-                loader: (params)=>{return params}
+                loader: (params) => { return params }
             },
             {
                 path: '/sell-books',
-                element: <PrivateRoute><SellBooks /></PrivateRoute>
+                element: <PrivateRoute><SellerRoute><SellBooks /></SellerRoute></PrivateRoute>
             },
             {
                 path: '/blogs',
