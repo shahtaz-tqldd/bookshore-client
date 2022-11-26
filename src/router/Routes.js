@@ -3,6 +3,7 @@ import BlogDetails from "../pages/Blogs/BlogDetails";
 import Blogpage from "../pages/Blogs/Blogpage";
 import Categories from "../pages/Categories/Categories";
 import ProductPage from "../pages/Categories/components/Products/ProductPage";
+import AllUsers from "../pages/Dashboard/AllUsers";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Erropage from "../pages/Erropage/Erropage";
 import Homepage from "../pages/Homepage/Homepage";
@@ -65,6 +66,10 @@ export const routes = createBrowserRouter([
             {
                 path: '/dashboard',
                 element: <Dashboard />,
+            },
+            {
+                path: '/dashboard/all-users',
+                element: <AllUsers />,
             }
         ]
     }

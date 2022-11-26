@@ -5,6 +5,7 @@ import Navbar from '../../components/Navbar'
 
 const DashboardLayout = () => {
     const dashboardMenu = <>
+        <li><Link to='/dashboard/all-users'>All Users</Link></li>
         <li><Link to='/'>All Buyer</Link></li>
         <li><Link to='/'>All Seller</Link></li>
         <li><Link to='/'>Admin</Link></li>
