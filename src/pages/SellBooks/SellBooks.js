@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { useForm } from 'react-hook-form'
+import toast from 'react-hot-toast'
 import books from '../../assets/images/books.png'
 import { AuthContext } from '../../context/AuthProvider'
 import ErrorMessage from '../../tools/ErrorMessage'
@@ -19,20 +20,35 @@ const SellBooks = () => {
         })
             .then(res => res.json())
             .then(imgData => {
-                const imgProduct = imgData.data.url
-                const productInfo = {
-                    productName: data.name,
-                    resalePrice: data.resalePrice,
-                    originalPrice: data.originalPrice,
-                    usedPeriod: data.usedPeriod,
-                    category: data.category,
-                    imgProduct,
-                    sellerName: user.displayName,
-                    sellerEmail: user.email,
-                    location: data.location
+                console.log(imgData)
+                if (imgData.success) {
+                    const imgProduct = imgData.data.url
+                    const productInfo = {
+                        productName: data.name,
+                        resalePrice: data.resalePrice,
+                        originalPrice: data.originalPrice,
+                        usedPeriod: data.usedPeriod,
+                        category: data.category,
+                        imgProduct,
+                        sellerName: user.displayName,
+                        sellerEmail: user.email,
+                        location: data.location
+                    }
+                    fetch("http://localhost:5000/products/",{
+                        method: 'POST',
+                        headers: {
+                            'Content-type': 'application/json'
+                        },
+                        body: JSON.stringify(productInfo)
+                    })
+                        .then(res=>res.json())
+                        .then(data=>{
+                            console.log(data)
+                            toast.success("Your Product added successfully")
+                        })
                 }
-                console.log(productInfo)
             })
+
     }
     return (
         <div className='max-w-[1200px] mx-auto'>
@@ -108,7 +124,7 @@ const SellBooks = () => {
                                     <label className="label">
                                         <span className="label-text">Upload a Book's Photo</span>
                                     </label>
-                                    <input {...register("imgProduct", { required: "Your Photo is required" })} name="image" type="file" />
+                                    <input {...register("imgProduct", { required: "Your Photo is required" })} type="file" />
                                     {errors.imgProduct && <ErrorMessage>{errors.imgProduct.message}</ErrorMessage>}
                                 </div>
 
