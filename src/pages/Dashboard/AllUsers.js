@@ -2,9 +2,11 @@ import { useQuery } from '@tanstack/react-query'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import DeleteUserModal from './components/DeleteUserModal'
+import MakeAdminModal from './components/MakeAdminModal'
 
 const AllUsers = () => {
     const [deletingUser, setDeletingUser] = useState(null)
+    const [makeAdmin, setMakeAdmin] = useState(null)
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
@@ -13,18 +15,34 @@ const AllUsers = () => {
             return data
         }
     })
-    const handleDelete = user =>{
-        fetch(`http://localhost:5000/users/${user._id}`,{
+    const handleDelete = user => {
+        fetch(`http://localhost:5000/users/${user._id}`, {
             method: 'DELETE'
         })
-        .then(res=>res.json())
-        .then(data=>{
-            if(data.acknowledged){
-                toast.success("User Deleted Successfully")
-                setDeletingUser(null)
-                refetch()
-            }
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    toast.success("User Deleted Successfully")
+                    setDeletingUser(null)
+                    refetch()
+                }
+            })
+    }
+
+    const handleMakeAdmin = (id) => {
+        const url = `http://localhost:5000/users/admin/${id}`
+        fetch(url, {
+            method: 'PUT'
         })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    console.log(data)
+                    toast.success("User made Admin successfully")
+                    setMakeAdmin(null)
+                    refetch()
+                }
+            })
     }
     return (
         <div>
@@ -37,7 +55,8 @@ const AllUsers = () => {
                             <th></th>
                             <th>User Info</th>
                             <th>User Type</th>
-                            <th>Action</th>
+                            <th>User Role</th>
+                            <th>Verify</th>
                             <th>Delete User</th>
                         </tr>
                     </thead>
@@ -62,10 +81,14 @@ const AllUsers = () => {
                                         </td>
                                         <td>{user.userType}</td>
                                         <td>
-                                            <button className="btn btn-accent btn-sm text-white">Make Admin</button>
+                                            {user?.role === 'admin' ? 'Admin' : <label htmlFor="makeAdmin-modal" onClick={() => setMakeAdmin(user)} className="btn btn-primary btn-outline btn-sm text-white">Make Admin</label>}
+                                        </td>
+                                        <td>
+                                            <label htmlFor="verify-modal" className="btn btn-accent btn-sm text-white">Verify</label>
+                                            {/* {user?.role === 'admin' ? 'Admin' : <label htmlFor="makeAdmin-modal" onClick={() => setMakeAdmin(user)} className="btn btn-accent btn-sm text-white">Make Admin</label>} */}
                                         </td>
                                         <th>
-                                            <label htmlFor="delete-modal" onClick={()=>setDeletingUser(user)} className="btn btn-error btn-sm text-white">Delete</label>
+                                            <label htmlFor="delete-modal" onClick={() => setDeletingUser(user)} className="btn btn-error btn-sm text-white">Delete</label>
                                         </th>
                                     </tr>
                                 )
@@ -75,11 +98,17 @@ const AllUsers = () => {
                     </tbody>
                 </table>
                 {
-                    deletingUser && 
-                    <DeleteUserModal 
-                        deletingUser ={deletingUser}
-                        setDeletingUser = {setDeletingUser}
-                        handleDelete = {handleDelete}
+                    deletingUser &&
+                    <DeleteUserModal
+                        deletingUser={deletingUser}
+                        handleDelete={handleDelete}
+                    />
+                }
+                {
+                    makeAdmin &&
+                    <MakeAdminModal
+                        makeAdmin={makeAdmin}
+                        handleMakeAdmin={handleMakeAdmin}
                     />
                 }
             </div>

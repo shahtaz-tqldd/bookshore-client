@@ -1,11 +1,13 @@
 import { useQuery } from '@tanstack/react-query'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useLoaderData } from 'react-router-dom'
+import { AuthContext } from '../../../../context/AuthProvider'
 import useTitle from '../../../../hooks/useTitle'
 import ProductCard from './ProductCard'
 import ProductModal from './ProductModal'
 
 const ProductPage = () => {
+    const {user} = useContext(AuthContext)
     useTitle('Product')
     const data = useLoaderData()
     const name = data.params.name
@@ -54,6 +56,7 @@ const ProductPage = () => {
                 product && <ProductModal
                     product={product}
                     setProduct={setProduct}
+                    user = {user}
                 />
             }
 
