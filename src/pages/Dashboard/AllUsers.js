@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { GoVerified } from 'react-icons/go'
+import { FaUserCog } from 'react-icons/fa'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import DeleteUserModal from './components/DeleteUserModal'
@@ -21,7 +22,10 @@ const AllUsers = () => {
     // delete user
     const handleDelete = user => {
         fetch(`http://localhost:5000/users/${user._id}`, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: {
+                authorization: `Beared ${localStorage.getItem('accessToken')}`
+            }
         })
             .then(res => res.json())
             .then(data => {
@@ -36,7 +40,10 @@ const AllUsers = () => {
     const handleMakeAdmin = (id) => {
         const url = `http://localhost:5000/users/admin/${id}`
         fetch(url, {
-            method: 'PUT'
+            method: 'PUT',
+            headers: {
+                authorization: `Beared ${localStorage.getItem('accessToken')}`
+            }
         })
             .then(res => res.json())
             .then(data => {
@@ -51,7 +58,10 @@ const AllUsers = () => {
     const handleVerifyUser = (id) => {
         const url = `http://localhost:5000/users/verify/${id}`
         fetch(url, {
-            method: 'PUT'
+            method: 'PUT',
+            headers: {
+                authorization: `Beared ${localStorage.getItem('accessToken')}`
+            }
         })
             .then(res => res.json())
             .then(data => {
@@ -99,7 +109,8 @@ const AllUsers = () => {
                                         </td>
                                         <td>{user.userType}</td>
                                         <td>
-                                            {user?.role === 'admin' ? 'Admin' : <label htmlFor="confirm-modal" onClick={() => setMakeAdmin(user)} className="btn btn-primary btn-outline btn-sm text-white">Make Admin</label>}
+                                            {user?.role === 'admin' ? <div className='flex items-center text-primary font-bold'><FaUserCog /> &nbsp; Admin</div>
+                                                : <label htmlFor="confirm-modal" onClick={() => setMakeAdmin(user)} className="btn btn-primary btn-outline btn-sm text-white">Make Admin</label>}
                                         </td>
                                         <td>
                                             {user?.verified === 'verified' ? <span className='flex items-center text-accent'>Verified &nbsp; <GoVerified /></span>

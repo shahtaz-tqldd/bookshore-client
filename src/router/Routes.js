@@ -5,6 +5,7 @@ import Categories from "../pages/Categories/Categories";
 import ProductPage from "../pages/Categories/components/Products/ProductPage";
 import AllProducts from "../pages/Dashboard/AllProducts";
 import AllUsers from "../pages/Dashboard/AllUsers";
+import BookedProducts from "../pages/Dashboard/BookedProducts";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import SellerProducts from "../pages/Dashboard/SellerProducts";
 import Erropage from "../pages/Erropage/Erropage";
@@ -76,11 +77,15 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/dashboard/all-products',
-                element: <SellerRoute><AllProducts/></SellerRoute>,
+                element: <AdminRoute><AllProducts /></AdminRoute>,
             },
             {
                 path: '/dashboard/seller-products',
-                element: <SellerRoute><SellerProducts/></SellerRoute>,
+                element: <SellerRoute><SellerProducts /></SellerRoute>,
+            },
+            {
+                path: '/dashboard/booked-products',
+                element: <BookedProducts />
             },
         ]
     }

@@ -30,7 +30,7 @@ const ProductPage = () => {
             <p className='mt-2 text-lg'>Read more and enrich your knowledge</p>
             <div className='flex mt-12 mb-24'>
                 <div className='lg:w-3/4 w-full'>
-                    <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
+                    <div className='grid grid-cols-1 gap-4'>
                         {
                             products.map(product => <ProductCard
                                 key={product.id}
