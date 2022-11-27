@@ -2,12 +2,14 @@ import { format } from 'date-fns'
 import React, { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
 import books from '../../assets/images/books.png'
 import { AuthContext } from '../../context/AuthProvider'
 import ErrorMessage from '../../tools/ErrorMessage'
 
 const SellBooks = () => {
     const { categories, user } = useContext(AuthContext)
+    const navigate = useNavigate()
     const postDate = format(new Date(),'PP')
     const postTime = format(new Date(), 'p')
     const { register, formState: { errors }, handleSubmit } = useForm()
@@ -52,6 +54,7 @@ const SellBooks = () => {
                         .then(data=>{
                             console.log(data)
                             toast.success("Your Product added successfully")
+                            navigate('/categories')
                         })
                 }
             })

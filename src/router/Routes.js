@@ -3,8 +3,10 @@ import BlogDetails from "../pages/Blogs/BlogDetails";
 import Blogpage from "../pages/Blogs/Blogpage";
 import Categories from "../pages/Categories/Categories";
 import ProductPage from "../pages/Categories/components/Products/ProductPage";
+import AllProducts from "../pages/Dashboard/AllProducts";
 import AllUsers from "../pages/Dashboard/AllUsers";
 import Dashboard from "../pages/Dashboard/Dashboard";
+import SellerProducts from "../pages/Dashboard/SellerProducts";
 import Erropage from "../pages/Erropage/Erropage";
 import Homepage from "../pages/Homepage/Homepage";
 import Login from "../pages/LoginRegister/Login";
@@ -71,7 +73,15 @@ export const routes = createBrowserRouter([
             {
                 path: '/dashboard/all-users',
                 element: <AdminRoute><AllUsers /></AdminRoute>,
-            }
+            },
+            {
+                path: '/dashboard/all-products',
+                element: <SellerRoute><AllProducts/></SellerRoute>,
+            },
+            {
+                path: '/dashboard/seller-products',
+                element: <SellerRoute><SellerProducts/></SellerRoute>,
+            },
         ]
     }
 ]);

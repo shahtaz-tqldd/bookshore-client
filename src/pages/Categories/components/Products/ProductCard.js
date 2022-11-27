@@ -9,7 +9,7 @@ const ProductCard = ({ product, setProduct }) => {
             <figure className="w-[40%]"><img src={imgProduct} alt={productName} className="rounded-2xl h-full" /></figure>
             <div className="w-[60%] mx-3 flex flex-col">
                 <h2 className="card-title">{productName}</h2>
-                <p className='text-primary mt-auto'>Resale Price: <span className='lg:text-2xl md:text-2xl text-xl font-bold '>{resalePrice} Taka</span></p>
+                <p className='text-primary mt-auto'>Price: <span className='lg:text-2xl md:text-2xl text-xl font-bold '>{resalePrice} Taka</span></p>
                 <small className=''>Original Price: {originalPrice} Taka | Used: {usedPeriod}</small>
                 <div className='my-2'>
                     <span className='flex items-center'>

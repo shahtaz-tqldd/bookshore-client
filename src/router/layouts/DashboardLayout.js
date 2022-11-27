@@ -4,16 +4,18 @@ import Footer from '../../components/Footer'
 import Navbar from '../../components/Navbar'
 import { AuthContext } from '../../context/AuthProvider'
 import useAdmin from '../../hooks/useAdmin'
+import useSeller from '../../hooks/useSeller'
 
 const DashboardLayout = () => {
     const { user } = useContext(AuthContext)
     const [isAdmin] = useAdmin(user.email)
+    const [isSeller] = useSeller(user.email)
     
     const dashboardMenu = <>
         {isAdmin && <li><Link to='/dashboard/all-users'>All Users</Link></li>}
-        <li><Link to='/'>All Buyer</Link></li>
-        <li><Link to='/'>All Seller</Link></li>
-        <li><Link to='/'>Admin</Link></li>
+        {isAdmin && <li><Link to='/dashboard/all-products'>All Products</Link></li>}
+        {(isSeller || isAdmin) && <li><Link to='/dashboard/seller-products'>Seller Products</Link></li>}
+        <li><Link to='/dashboard/booked-products'>Booked Products</Link></li>
     </>
     return (
         <div>
