@@ -25,15 +25,15 @@ const ProductPage = () => {
     })
 
     return (
-        <div className='max-w-[1200px] mx-auto px-4 md:px-12'>
+        <div className='max-w-[1200px] mx-auto px-4 md:px-6'>
             <h1 className='mt-12 text-4xl font-bold'>{name}</h1>
             <p className='mt-2 text-lg'>Read more and enrich your knowledge</p>
-            <div className='flex mt-12 mb-24'>
-                <div className='lg:w-3/4 w-full'>
-                    <div className='grid grid-cols-1 gap-4'>
+            <div className='flex mt-12 mb-24 lg:flex-row md:flex-col-reverse'>
+                <div className='lg:w-4/5 w-full'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4'>
                         {
                             products.map(product => <ProductCard
-                                key={product.id}
+                                key={product._id}
                                 product={product}
                                 setProduct={setProduct}
                             ></ProductCard>)
@@ -41,9 +41,9 @@ const ProductPage = () => {
                     </div>
                 </div>
 
-                <div className='lg:w-1/4 hidden lg:block pl-6'>
-                    <div className="btn-group bg-base-100 btn-group-vertical flex">
-                        <h2 className='my-4 text-lg font-bold px-3'>Browse More Collection</h2>
+                <div className='lg:w-1/5 md:w-full md:mb-6 hidden md:block lg:block lg:pl-6'>
+                    <div className="btn-group bg-base-100 btn-group-vertical flex lg:flex-col md:flex-row md:justify-between">
+                        <h2 className='my-4 text-sm font-bold mx-auto text-accent hidden lg:block'>Browse More Collection</h2>
                         <button className={`btn ${name ==='Novel' && 'btn-active'}`}>Novel</button>
                         <button className={`btn ${name ==='Poetry' && 'btn-active'}`}>Poetry</button>
                         <button className={`btn ${name ==='Non Fiction' && 'btn-active'}`}>Non Fiction</button>
