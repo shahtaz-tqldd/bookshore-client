@@ -10,6 +10,7 @@ import Homepage from "../pages/Homepage/Homepage";
 import Login from "../pages/LoginRegister/Login";
 import Register from "../pages/LoginRegister/Register";
 import SellBooks from "../pages/SellBooks/SellBooks";
+import AdminRoute from "./AdminRoute";
 import DashboardLayout from "./layouts/DashboardLayout";
 import Main from "./layouts/Main";
 import PrivateRoute from "./PrivateRoute";
@@ -69,7 +70,7 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/dashboard/all-users',
-                element: <AllUsers />,
+                element: <AdminRoute><AllUsers /></AdminRoute>,
             }
         ]
     }
