@@ -6,25 +6,33 @@ import { useForm } from 'react-hook-form'
 import StartWithGoogle from './StartWithGoogle'
 import { AuthContext } from '../../context/AuthProvider'
 import ErrorMessage from '../../tools/ErrorMessage'
+import useToken from '../../hooks/useToken';
 
 const Login = () => {
+  const [loginEmail, setLoginEmail] = useState(null)
   const { register, handleSubmit } = useForm()
   const { emailLogin } = useContext(AuthContext)
   const [loginError, setLoginError] = useState('')
-  
+
+  const [token] = useToken(loginEmail)
+
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || '/'
+
+  if (token) {
+    navigate(from, { replace: true })
+  }
 
   const handleLogin = (data) => {
     const email = data.email
     const password = data.password
     emailLogin(email, password)
       .then(result => {
-        console.log(result.user)
         setLoginError('')
         toast.success("You are successfully Login")
-        navigate(from, {replace: true})
+        setLoginEmail(result.user.email)
+
       })
       .catch(err => {
         console.error(err.message)

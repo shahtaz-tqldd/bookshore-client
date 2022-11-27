@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import registerImg from '../../assets/images/register.png'
 import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
@@ -7,12 +7,20 @@ import { AuthContext } from '../../context/AuthProvider'
 import './file.css'
 import ErrorMessage from '../../tools/ErrorMessage'
 import toast from 'react-hot-toast'
+import useToken from '../../hooks/useToken'
 
 
 const Register = () => {
+    const [createdUserEmail, setCreatedUserEmail] = useState(null)
     const { createUser, updateUser } = useContext(AuthContext)
     const { register, formState: { errors }, handleSubmit } = useForm()
     const navigate = useNavigate();
+    const [token] = useToken(createdUserEmail)
+
+    if(token){
+        navigate("/")
+    }
+
     const imageHostKey = process.env.REACT_APP_imgbb_key
 
     const handleCreateUser = data => {
@@ -42,7 +50,7 @@ const Register = () => {
                             console.log(user)
                             updateUser(userInfo)
                                 .then(() => {
-                                    const dbUserInfo = {...userInfo, email, }
+                                    const dbUserInfo = {...userInfo, email }
                                     addUserToDB(dbUserInfo)
                                 })
                                 .catch(err => console.error(err))
@@ -52,17 +60,18 @@ const Register = () => {
             })
 
     }
-    const addUserToDB=(userInfo)=>{
+    const addUserToDB=(dbUserInfo)=>{
         fetch('http://localhost:5000/users',{
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
             },
-            body: JSON.stringify(userInfo)
+            body: JSON.stringify(dbUserInfo)
         })
         .then(res=>res.json())
         .then(()=>{
             toast.success("User Registered successfully")
+            setCreatedUserEmail(dbUserInfo.email)
             navigate('/')
         })
     } 

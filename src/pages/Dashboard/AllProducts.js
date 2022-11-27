@@ -45,7 +45,7 @@ const AllProducts = () => {
                                             </div>
                                         </td>
                                         <td>
-                                            <div className='text-lg'>Price: <strong>{product.resalePrice} taka</strong></div>
+                                            <div className='text-lg'><strong>{product.resalePrice} taka</strong></div>
                                             <small>Original Price: {product.originalPrice} taka</small>
                                         </td>
                                         <td>

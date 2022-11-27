@@ -7,7 +7,11 @@ const SellerProducts = () => {
     const { data: products = [] } = useQuery({
         queryKey: ["products", user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/my-products?email=${user?.email}`)
+            const res = await fetch(`http://localhost:5000/my-products?email=${user?.email}`,{
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
             const data = await res.json()
             return data
         }
@@ -28,8 +32,8 @@ const SellerProducts = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {
-                            products?.map((product, index) => {
+                        {products.length &&
+                            products.map((product, index) => {
                                 return (
                                     <tr key={product._id}>
                                         <th>{index + 1}</th>
@@ -47,7 +51,7 @@ const SellerProducts = () => {
                                             </div>
                                         </td>
                                         <td>
-                                            <div className='text-lg'>Price: <strong>{product.resalePrice} taka</strong></div>
+                                            <div className='text-lg'><strong>{product.resalePrice} taka</strong></div>
                                             <small>Original Price: {product.originalPrice} taka</small>
                                         </td>
                                         <td>Unsold</td>
