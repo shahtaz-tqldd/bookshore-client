@@ -5,7 +5,7 @@ const CategoryCard = ({ details }) => {
     const { categoryName, detail, img } = details
     return (
         <div className="card bg-base-100 hover:shadow-lg m-3">
-            <div className='flex items-start h-48'>
+            <div className='flex items-start lg:h-48 h-64'>
                 <figure className='w-[25%]'><img src={img} alt={categoryName} className="w-32 p-2" /></figure>
                 <div className="w-[75%] py-6 pl-2 pr-4 flex flex-col">
                     <h2 className="card-title">{categoryName}</h2>
