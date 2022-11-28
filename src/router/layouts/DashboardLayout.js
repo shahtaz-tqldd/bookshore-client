@@ -14,8 +14,8 @@ const DashboardLayout = () => {
     const dashboardMenu = <>
         {isAdmin && <li><Link to='/dashboard/all-users'>All Users</Link></li>}
         {isAdmin && <li><Link to='/dashboard/all-products'>All Products</Link></li>}
-        {(isSeller || isAdmin) && <li><Link to='/dashboard/seller-products'>Seller Products</Link></li>}
-        <li><Link to='/dashboard/booked-products'>Booked Products</Link></li>
+        {(isSeller || isAdmin) && <li><Link to='/dashboard/seller-products'>My Products</Link></li>}
+        <li><Link to='/dashboard/booked-products'>My Orders</Link></li>
     </>
     return (
         <div>

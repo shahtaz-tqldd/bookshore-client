@@ -22,17 +22,32 @@ const ProductModal = ({ product, user }) => {
             buyingDate,
             buyingTime
         }
-        fetch('http://localhost:5000/products/booked',{
+        fetch('http://localhost:5000/products/booked', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',
-                authorization : `Bearer ${localStorage.getItem('accessToken')}`
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify(bookingProduct)
         })
             .then(res => res.json())
             .then(data => {
-                if (data.acknowledged){
+                if (data.acknowledged) {
+                    soldStatusToDB(product._id)
+                }
+            })
+    }
+
+    const soldStatusToDB = (id) => {
+        fetch(`http://localhost:5000/products/${id}`, {
+            method: 'PUT',
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
                     toast.success("You have successfully booked this book")
                     navigate('/dashboard/booked-products')
                 }

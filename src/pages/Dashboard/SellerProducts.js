@@ -54,7 +54,7 @@ const SellerProducts = () => {
                                             <div className='text-lg'><strong>{product.resalePrice} taka</strong></div>
                                             <small>Original Price: {product.originalPrice} taka</small>
                                         </td>
-                                        <td>Unsold</td>
+                                        <td>{product?.status === 'sold' ? <span className='text-primary font-bold'>SOLD</span> : 'Unsold'}</td>
                                         <th>
                                             <button className="btn btn-error text-white btn-sm">Remove</button>
                                         </th>

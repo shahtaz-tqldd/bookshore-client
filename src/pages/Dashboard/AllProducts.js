@@ -52,7 +52,7 @@ const AllProducts = () => {
                                             <div>{product.sellerName}</div>
                                             <small>{product.location}</small>
                                         </td>
-                                        <td>Unsold</td>
+                                        <td>{product?.status === 'sold' ? <span className='text-primary font-bold'>SOLD</span> : 'Unsold'}</td>
                                         <th>
                                             <button className="btn btn-error text-white btn-sm">Remove</button>
                                         </th>
