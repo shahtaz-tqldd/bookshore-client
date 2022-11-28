@@ -27,7 +27,7 @@ const StartWithGoogle = () => {
             .catch(err => console.error(err))
     }
     const addUserToDB = (userInfo) => {
-        fetch('http://localhost:5000/users', {
+        fetch('https://bookshore-server.vercel.app/users', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'

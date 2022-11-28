@@ -61,7 +61,7 @@ const Register = () => {
 
     }
     const addUserToDB=(dbUserInfo)=>{
-        fetch('http://localhost:5000/users',{
+        fetch('https://bookshore-server.vercel.app/users',{
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'

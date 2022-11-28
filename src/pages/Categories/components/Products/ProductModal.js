@@ -22,7 +22,7 @@ const ProductModal = ({ product, user }) => {
             buyingDate,
             buyingTime
         }
-        fetch('http://localhost:5000/products/booked', {
+        fetch('https://bookshore-server.vercel.app/products/booked', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',
@@ -39,7 +39,7 @@ const ProductModal = ({ product, user }) => {
     }
 
     const soldStatusToDB = (id) => {
-        fetch(`http://localhost:5000/products/${id}`, {
+        fetch(`https://bookshore-server.vercel.app/products/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`

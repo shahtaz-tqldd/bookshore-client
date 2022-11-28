@@ -13,7 +13,7 @@ const Homepage = () => {
     const {data : adsItems =[] } = useQuery({
         queryKey: ["advertised"],
         queryFn: async()=>{
-            const res = await fetch('http://localhost:5000/products/advertised',{
+            const res = await fetch('https://bookshore-server.vercel.app/products/advertised',{
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`
                 }

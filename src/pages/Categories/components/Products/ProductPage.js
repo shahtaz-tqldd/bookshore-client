@@ -14,7 +14,7 @@ const ProductPage = () => {
     console.log(name)
 
     const [product, setProduct] = useState(null)
-    const url = `http://localhost:5000/products?category=${name}`
+    const url = `https://bookshore-server.vercel.app/products?category=${name}`
     const {data: products =[]} = useQuery({
         queryKey: ['products'],
         queryFn: async()=>{

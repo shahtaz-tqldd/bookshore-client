@@ -44,7 +44,7 @@ const SellBooks = () => {
                         location: data.location,
                         status: 'unsold'
                     }
-                    fetch("http://localhost:5000/products/",{
+                    fetch("https://bookshore-server.vercel.app/products/",{
                         method: 'POST',
                         headers: {
                             'Content-type': 'application/json'

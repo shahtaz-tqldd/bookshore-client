@@ -8,7 +8,7 @@ const BookedProducts = () => {
     const { data: orders = [] } = useQuery({
         queryKey: ["orders", email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/products/booked?email=${email}`, {
+            const res = await fetch(`https://bookshore-server.vercel.app/products/booked?email=${email}`, {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`
                 }
