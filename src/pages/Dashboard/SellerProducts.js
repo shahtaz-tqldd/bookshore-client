@@ -24,23 +24,61 @@ const SellerProducts = () => {
 
     // remove product 
     const handleRemoveProduct = (product) => {
-        fetch(`http://localhost:5000/products/remove/${product._id}`,{
+        fetch(`http://localhost:5000/products/remove/${product._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
             }
         })
-            .then(res=>res.json())
-            .then(data=>{
-                if(data.acknowledged){
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
                     toast.success("Product successfully removed")
                     setRemoveProduct(null)
                     refetch()
                 }
             })
     }
-    const handleAdvertiseProduct = (ptoduct) => {
 
+    // advertise product
+    const handleAdvertiseProduct = (productInfo) => {
+        fetch('http://localhost:5000/products/advertised', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            },
+            body: JSON.stringify(productInfo)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    // advertiseStatusToDB(productInfo._id)
+                    
+                    setAdvertiseProduct(null)
+                    toast.success("success")
+                    refetch()
+                }
+            })
+    }
+
+    // change advertisement status to db
+    // need to solve----------
+    const advertiseStatusToDB = (id) => {
+        fetch(`http://localhost:5000/products/advertise/${id}`, {
+            method: 'PUT',
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    toast.success("Advertised successfull")
+                    setAdvertiseProduct(null)
+                    refetch()
+                }
+            })
     }
     return (
         <div>
@@ -85,8 +123,8 @@ const SellerProducts = () => {
                                             <label htmlFor='productAction-modal' onClick={() => setRemoveProduct(product)} className="btn btn-error text-white btn-sm">Remove</label>
                                         </th>
                                         <th>
-                                            {product?.status === 'unsold' && 
-                                            <label htmlFor='productAction-modal' onClick={() => setAdvertiseProduct(product)} className="btn btn-outline btn-accent btn-sm">Advertise</label>}
+                                            {(product?.status === 'unsold' && product?.advertised !== 'advertised') &&
+                                                <label htmlFor='productAction-modal' onClick={() => setAdvertiseProduct(product)} className="btn btn-outline btn-accent btn-sm">Advertise</label>}
                                         </th>
                                     </tr>
                                 )
@@ -101,7 +139,7 @@ const SellerProducts = () => {
                         setProductData={setRemoveProduct}
                         message={'Are you sure that you want to remove'}
                         handleClick={handleRemoveProduct}
-                        btnColor = {'btn-error'}
+                        btnColor={'btn-error'}
                         action={'Remove'}
                     />
                 }
@@ -112,7 +150,7 @@ const SellerProducts = () => {
                         setProductData={setAdvertiseProduct}
                         message={'Are you sure you want to Advertise'}
                         handleClick={handleAdvertiseProduct}
-                        btnColor = {'btn-accent'}
+                        btnColor={'btn-accent'}
                         action={'Confirm'}
                     />
                 }

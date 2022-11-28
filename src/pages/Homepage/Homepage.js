@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query'
 import React from 'react'
 import useTitle from '../../hooks/useTitle'
 import Advertisement from './components/Advertisement'
@@ -9,6 +10,18 @@ import TopBanner from './components/TopBanner'
 
 const Homepage = () => {
     useTitle('Home')
+    const {data : adsItems =[] } = useQuery({
+        queryKey: ["advertised"],
+        queryFn: async()=>{
+            const res = await fetch('http://localhost:5000/products/advertised',{
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
+            const data = await res.json()
+            return data
+        }
+    })
     return (
         <>
             <div className='max-w-[1200px] mx-auto'>
@@ -18,7 +31,7 @@ const Homepage = () => {
             <MidBanner/>
             <div className='max-w-[1200px] mx-auto px-6'>
                 <CategoriesHome/>
-                <Advertisement/>
+                {adsItems.length>0 && <Advertisement adsItems={adsItems}/>}
                 <Testimonial/>
             </div>
         </>
