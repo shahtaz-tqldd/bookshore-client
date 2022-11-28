@@ -1,13 +1,18 @@
 import { useQuery } from '@tanstack/react-query'
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
+import toast from 'react-hot-toast'
 import { AuthContext } from '../../context/AuthProvider'
+import ProductActionModal from './components/ProductActionModal'
 
 const SellerProducts = () => {
+    const [removeProduct, setRemoveProduct] = useState(null)
+    const [advertiseProduct, setAdvertiseProduct] = useState(null)
+
     const { user } = useContext(AuthContext)
-    const { data: products = [] } = useQuery({
+    const { data: products = [], refetch } = useQuery({
         queryKey: ["products", user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/my-products?email=${user?.email}`,{
+            const res = await fetch(`http://localhost:5000/my-products?email=${user?.email}`, {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`
                 }
@@ -16,6 +21,27 @@ const SellerProducts = () => {
             return data
         }
     })
+
+    // remove product 
+    const handleRemoveProduct = (product) => {
+        fetch(`http://localhost:5000/products/remove/${product._id}`,{
+            method: 'DELETE',
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res=>res.json())
+            .then(data=>{
+                if(data.acknowledged){
+                    toast.success("Product successfully removed")
+                    setRemoveProduct(null)
+                    refetch()
+                }
+            })
+    }
+    const handleAdvertiseProduct = (ptoduct) => {
+
+    }
     return (
         <div>
             <h2 className='text-3xl font-bold uppercase mb-6'>My Products</h2>
@@ -56,10 +82,11 @@ const SellerProducts = () => {
                                         </td>
                                         <td>{product?.status === 'sold' ? <span className='text-primary font-bold'>SOLD</span> : 'Unsold'}</td>
                                         <th>
-                                            <button className="btn btn-error text-white btn-sm">Remove</button>
+                                            <label htmlFor='productAction-modal' onClick={() => setRemoveProduct(product)} className="btn btn-error text-white btn-sm">Remove</label>
                                         </th>
                                         <th>
-                                            <button className="btn btn-accent btn-outline btn-sm">Advertise</button>
+                                            {product?.status === 'unsold' && 
+                                            <label htmlFor='productAction-modal' onClick={() => setAdvertiseProduct(product)} className="btn btn-outline btn-accent btn-sm">Advertise</label>}
                                         </th>
                                     </tr>
                                 )
@@ -67,6 +94,28 @@ const SellerProducts = () => {
                         }
                     </tbody>
                 </table>
+                {
+                    removeProduct &&
+                    <ProductActionModal
+                        productData={removeProduct}
+                        setProductData={setRemoveProduct}
+                        message={'Are you sure that you want to remove'}
+                        handleClick={handleRemoveProduct}
+                        btnColor = {'btn-error'}
+                        action={'Remove'}
+                    />
+                }
+                {
+                    advertiseProduct &&
+                    <ProductActionModal
+                        productData={advertiseProduct}
+                        setProductData={setAdvertiseProduct}
+                        message={'Are you sure you want to Advertise'}
+                        handleClick={handleAdvertiseProduct}
+                        btnColor = {'btn-accent'}
+                        action={'Confirm'}
+                    />
+                }
             </div>
         </div>
     )

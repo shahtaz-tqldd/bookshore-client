@@ -42,6 +42,7 @@ const SellBooks = () => {
                         sellerEmail: user.email,
                         phone: data.phone,
                         location: data.location,
+                        status: 'unsold'
                     }
                     fetch("http://localhost:5000/products/",{
                         method: 'POST',
