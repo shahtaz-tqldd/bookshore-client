@@ -50,7 +50,7 @@ const Navbar = () => {
                             {navMenuItems}
                         </ul>
                     </div>
-                    <Link to='/' className="btn btn-ghost font-normal normal-case text-2xl"><strong>Book</strong>shore</Link>
+                    <Link to='/' className="text-2xl"><strong>Book</strong>Shore</Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal p-0">
@@ -61,7 +61,7 @@ const Navbar = () => {
                     {
                         user?.uid ?
                             <button onClick={handleLogOut} className='btn btn-error text-white normal-case'>Logout</button>
-                            : <Link to='/login' className="btn btn-outline btn-sm">Sign In</Link>
+                            : <Link to='/login' className="btn btn-outline px-5 normal-case">Sign in</Link>
                     }
 
                 </div>

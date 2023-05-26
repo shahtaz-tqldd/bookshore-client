@@ -34,7 +34,7 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/categories/:name',
-                element: <PrivateRoute><ProductPage /></PrivateRoute>,
+                element: <ProductPage />,
                 loader: (params) => { return params }
             },
             {
@@ -47,8 +47,8 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/blogs/:id',
-                element: <BlogDetails />, 
-                loader: ({params})=> fetch(`https://bookshore-server.vercel.app/blogs/${params.id}`)
+                element: <BlogDetails />,
+                loader: ({ params }) => fetch(`https://bookshore-server.vercel.app/blogs/${params.id}`)
             },
             {
                 path: '/login',

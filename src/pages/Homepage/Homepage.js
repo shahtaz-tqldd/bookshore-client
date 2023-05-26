@@ -7,6 +7,7 @@ import MidBanner from './components/MidBanner'
 import Services from './components/Services'
 import Testimonial from './components/Testimonial/Testimonial'
 import TopBanner from './components/TopBanner'
+import Products from './Products/Products'
 
 const Homepage = () => {
     useTitle('Home')
@@ -14,9 +15,9 @@ const Homepage = () => {
         queryKey: ["advertised"],
         queryFn: async()=>{
             const res = await fetch('https://bookshore-server.vercel.app/products/advertised',{
-                headers: {
-                    authorization: `Bearer ${localStorage.getItem('accessToken')}`
-                }
+                // headers: {
+                //     authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                // }
             })
             const data = await res.json()
             return data
@@ -30,6 +31,7 @@ const Homepage = () => {
             </div>
             <MidBanner/>
             <div className='max-w-[1200px] mx-auto px-6'>
+                <Products/>
                 <CategoriesHome/>
                 {adsItems.length>0 && <Advertisement adsItems={adsItems}/>}
                 <Testimonial/>

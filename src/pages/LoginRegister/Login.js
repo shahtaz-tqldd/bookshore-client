@@ -7,8 +7,10 @@ import StartWithGoogle from './StartWithGoogle'
 import { AuthContext } from '../../context/AuthProvider'
 import ErrorMessage from '../../tools/ErrorMessage'
 import useToken from '../../hooks/useToken';
+import useTitle from '../../hooks/useTitle';
 
 const Login = () => {
+  useTitle('Login')
   const [loginEmail, setLoginEmail] = useState(null)
   const { register, handleSubmit } = useForm()
   const { emailLogin } = useContext(AuthContext)

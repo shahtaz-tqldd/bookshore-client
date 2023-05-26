@@ -4,18 +4,17 @@ import { Link } from 'react-router-dom'
 const CategoryCard = ({ details }) => {
     const { categoryName, detail, img } = details
     return (
-        <div className="card bg-base-100 hover:shadow-lg m-3">
-            <div className='flex items-start lg:h-48 h-64'>
-                <figure className='w-[25%]'><img src={img} alt={categoryName} className="w-32 p-2" /></figure>
-                <div className="w-[75%] py-6 pl-2 pr-4 flex flex-col">
-                    <h2 className="card-title">{categoryName}</h2>
-                    <p>{detail}</p>
-                    <div className="text-end absolute bottom-5 right-5">
-                        <Link to={`/categories/${categoryName}`}><button className="btn btn-accent w-32 btn-outline btn-sm pt-3 pb-6 mt-3 rounded-full">Browse</button></Link>
-                    </div>
-                </div>
+        <Link
+            to={`/categories/${categoryName}`}
+            className='rounded-2xl'
+            style={{backgroundImage:"url(https://substackcdn.com/image/fetch/w_1200,h_600,c_limit,f_jpg,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fb1f0f6dd-7070-4929-bd50-00c8309d0fd1_4032x3024.jpeg)", backgroundSize:"cover"}}
+            >
+            <div className='bg-base-100 p-5 h-full hover:opacity-90 hover:bg-primary hover:text-white rounded-2xl transition duration-300'>
+                <img src={img} alt={categoryName} className="w-20" />
+                <h2 className="text-2xl font-bold mb-2">{categoryName}</h2>
+                <p>{detail}</p>
             </div>
-        </div>
+        </Link>
     )
 }
 

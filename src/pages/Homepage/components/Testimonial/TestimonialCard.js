@@ -2,21 +2,21 @@ import React from 'react'
 
 const TestimonialCard = ({ review }) => {
     const { name, comment, rating, propic } = review
-    
+
     const n = Math.ceil(rating)
     let rows = []
-    for(let i=0; i<n; i++){
+    for (let i = 0; i < n; i++) {
         rows.push(1)
     }
-    const m = 5-n;
+    const m = 5 - n;
     let rows2 = []
-    for(let i=0; i<m; i++){
+    for (let i = 0; i < m; i++) {
         rows2.push(1)
     }
 
 
     return (
-        <div className="rounded-md bg-base-100 mx-3" style={{ backgroundColor: "#CFF5E7" }}>
+        <div className="rounded-2xl mx-3 bg-white">
             <div className="h-64 p-6 flex flex-col justify-between">
                 <div>{comment}</div>
                 <div className='flex'>
@@ -30,10 +30,10 @@ const TestimonialCard = ({ review }) => {
                         <div className="rating rating-sm flex items-center">
                             <span>{rating} &nbsp; &nbsp;</span>
                             {
-                                rows.map(()=><input type="radio" name="rating-6" className="mask mask-star-2 bg-primary" />)
+                                rows.map(() => <input type="radio" name="rating-6" className="mask mask-star-2 bg-primary" />)
                             }
                             {
-                                rows2.map(()=><input type="radio" name="rating-6" className="mask mask-star-2 bg-base-100" />)
+                                rows2.map(() => <input type="radio" name="rating-6" className="mask mask-star-2 bg-primary opacity-40" />)
                             }
                         </div>
                     </div>

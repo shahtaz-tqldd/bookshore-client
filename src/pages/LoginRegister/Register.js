@@ -8,9 +8,11 @@ import './file.css'
 import ErrorMessage from '../../tools/ErrorMessage'
 import toast from 'react-hot-toast'
 import useToken from '../../hooks/useToken'
+import useTitle from '../../hooks/useTitle'
 
 
 const Register = () => {
+    useTitle('Register')
     const [createdUserEmail, setCreatedUserEmail] = useState(null)
     const { createUser, updateUser } = useContext(AuthContext)
     const { register, formState: { errors }, handleSubmit } = useForm()
