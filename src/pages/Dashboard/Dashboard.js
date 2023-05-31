@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { AuthContext } from '../../context/AuthProvider'
 import useAdmin from '../../hooks/useAdmin'
 import useSeller from '../../hooks/useSeller'
-import openBook from '../../assets/images/openbook.png';
+import openBook from '../../assets/images/openbook.webp';
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext)

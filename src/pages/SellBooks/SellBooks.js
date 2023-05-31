@@ -3,7 +3,7 @@ import React, { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
-import books from '../../assets/images/books.png'
+import books from '../../assets/images/books.webp'
 import { AuthContext } from '../../context/AuthProvider'
 import ErrorMessage from '../../tools/ErrorMessage'
 
@@ -44,7 +44,7 @@ const SellBooks = () => {
                         location: data.location,
                         status: 'unsold'
                     }
-                    fetch("https://bookshore-server.vercel.app/products/",{
+                    fetch("https://bookshore-server-shahtaz-tqldd.vercel.app/products/",{
                         method: 'POST',
                         headers: {
                             'Content-type': 'application/json'

@@ -1,4 +1,4 @@
-import login from '../../assets/images/login.png'
+import login from '../../assets/images/login.webp'
 import React, { useContext, useState } from 'react'
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom'
@@ -7,8 +7,10 @@ import StartWithGoogle from './StartWithGoogle'
 import { AuthContext } from '../../context/AuthProvider'
 import ErrorMessage from '../../tools/ErrorMessage'
 import useToken from '../../hooks/useToken';
+import useTitle from '../../hooks/useTitle';
 
 const Login = () => {
+  useTitle('Login')
   const [loginEmail, setLoginEmail] = useState(null)
   const { register, handleSubmit } = useForm()
   const { emailLogin } = useContext(AuthContext)
@@ -49,7 +51,7 @@ const Login = () => {
       <div className="hero-content flex-col lg:flex-row w-full">
         <div className="lg:w-1/2 text-center flex flex-col items-center lg:text-left">
           <img src={login} alt="login" className='w-2/3' />
-          <h1 className="text-3xl font-bold">Welcome to Bookshore</h1>
+          <h1 className="text-3xl font-bold uppercase">Here you are<br />Let's get started</h1>
         </div>
         <div className="lg:w-1/2 card flex-shrink-0 w-full max-w-sm shadow-lg bg-base-100">
           <div className="card-body">

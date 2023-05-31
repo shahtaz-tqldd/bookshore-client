@@ -10,10 +10,9 @@ module.exports = {
     themes: [
       {
         themeBookshore: {
-          primary: "#6ECCAF",
-          secondary: "#ADE792",
+          primary: "#47A992",
+          secondary: "#FBBD23",
           accent: "#47B5FF",
-          // accent: "#344D67",
           neutral: "#fefefe",
           "base-100": "#fff",
         },
