@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import registerImg from '../../assets/images/register.png'
+import registerImg from '../../assets/images/register.webp'
 import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import StartWithGoogle from './StartWithGoogle'
@@ -63,7 +63,7 @@ const Register = () => {
 
     }
     const addUserToDB=(dbUserInfo)=>{
-        fetch('https://bookshore-server.vercel.app/users',{
+        fetch('https://bookshore-server-shahtaz-tqldd.vercel.app/users',{
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
@@ -82,7 +82,7 @@ const Register = () => {
             <div className="hero-content flex-col lg:flex-row-reverse w-full">
                 <div className="lg:w-1/2 text-center flex flex-col items-center lg:text-left">
                     <img src={registerImg} alt="login" className='w-2/3' />
-                    <h1 className="text-3xl font-bold pb-32">Hey! How are you doing?</h1>
+                    <h1 className="text-3xl font-bold pb-32 uppercase">Welcome to <br/> the bookworms club</h1>
                 </div>
                 <div className="lg:w-1/2 card flex-shrink-0 w-full max-w-md shadow-lg bg-base-100">
                     <div className="card-body">

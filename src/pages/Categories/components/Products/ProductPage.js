@@ -13,7 +13,7 @@ const ProductPage = () => {
     const name = data.params.name
 
     const [product, setProduct] = useState(null)
-    const url = `https://bookshore-server.vercel.app/products?category=${name}`
+    const url = `https://bookshore-server-shahtaz-tqldd.vercel.app/products?category=${name}`
     const { data: products = [] } = useQuery({
         queryKey: ['products'],
         queryFn: async () => {

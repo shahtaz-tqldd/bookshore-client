@@ -27,9 +27,9 @@ const ProductCard = ({ product, setProduct }) => {
                         <MdLocationPin /> &nbsp;<span className='text-xs'>{location}</span>
                     </span>
                 </div>
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-end">
                     <span className='text-xs'>Posted: {postDate}</span>
-                    {(user?.email !== sellerEmail) && <label htmlFor="productBuy-modal" onClick={() => setProduct(product)} className="btn btn-warning btn-sm text-white normal-case">Buy Now</label>}
+                    {(user?.email !== sellerEmail) && <label htmlFor="productBuy-modal" onClick={() => setProduct(product)} className="btn btn-primary text-white normal-case px-8">Buy Now</label>}
                 </div>
             </div>
         </div>

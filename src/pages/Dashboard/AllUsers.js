@@ -14,14 +14,14 @@ const AllUsers = () => {
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch('https://bookshore-server.vercel.app/users')
+            const res = await fetch('https://bookshore-server-shahtaz-tqldd.vercel.app/users')
             const data = await res.json()
             return data
         }
     })
     // delete user
     const handleDelete = user => {
-        fetch(`https://bookshore-server.vercel.app/users/${user._id}`, {
+        fetch(`https://bookshore-server-shahtaz-tqldd.vercel.app/users/${user._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `Beared ${localStorage.getItem('accessToken')}`
@@ -38,7 +38,7 @@ const AllUsers = () => {
     }
     // make a user admin
     const handleMakeAdmin = (id) => {
-        const url = `https://bookshore-server.vercel.app/users/admin/${id}`
+        const url = `https://bookshore-server-shahtaz-tqldd.vercel.app/users/admin/${id}`
         fetch(url, {
             method: 'PUT',
             headers: {
@@ -56,7 +56,7 @@ const AllUsers = () => {
     }
     // verify user
     const handleVerifyUser = (id) => {
-        const url = `https://bookshore-server.vercel.app/users/verify/${id}`
+        const url = `https://bookshore-server-shahtaz-tqldd.vercel.app/users/verify/${id}`
         fetch(url, {
             method: 'PUT',
             headers: {
