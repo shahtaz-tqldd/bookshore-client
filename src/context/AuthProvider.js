@@ -9,6 +9,7 @@ export const AuthContext = createContext()
 const AuthProvider = ({ children }) => {
 	const [user, setUser] = useState(null)
 	const [loading, setLoading] = useState(true)
+	const [category, setCategory] = useState('')
 
 	const googleProvider = new GoogleAuthProvider()
 	const googleLogin = () => {
@@ -47,15 +48,15 @@ const AuthProvider = ({ children }) => {
 	const { data: categories = [] } = useQuery({
 		queryKey: ['categories'],
 		queryFn: async () => {
-			const res = await fetch("https://bookshore-server-shahtaz-tqldd.vercel.app/categories")
+			const res = await fetch("https://bookshore-server-shahtaz-tqldd.vercel.appcategories")
 			const data = await res.json()
 			return data
 		}
 	})
+
 	// user fetched from db and provide
 
-
-
+	
 	const authInfo = {
 		googleLogin,
 		emailLogin,
@@ -67,6 +68,8 @@ const AuthProvider = ({ children }) => {
 		setUser,
 		logout,
 		categories,
+		category, 
+		setCategory
 	}
 	return (
 		<AuthContext.Provider value={authInfo}>

@@ -3,7 +3,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
-import ErrorMessage from '../../../../tools/ErrorMessage'
+import ErrorMessage from '../../tools/ErrorMessage'
 
 const ProductModal = ({ product, user }) => {
     const { register, formState: { errors }, handleSubmit } = useForm()
@@ -22,7 +22,7 @@ const ProductModal = ({ product, user }) => {
             buyingDate,
             buyingTime
         }
-        fetch('https://bookshore-server-shahtaz-tqldd.vercel.app/products/booked', {
+        fetch('https://bookshore-server-shahtaz-tqldd.vercel.appproducts/booked', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',
@@ -39,7 +39,7 @@ const ProductModal = ({ product, user }) => {
     }
 
     const soldStatusToDB = (id) => {
-        fetch(`https://bookshore-server-shahtaz-tqldd.vercel.app/products/${id}`, {
+        fetch(`https://bookshore-server-shahtaz-tqldd.vercel.appproducts/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`

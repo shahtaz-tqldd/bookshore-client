@@ -2,10 +2,12 @@ import React from 'react'
 import {BsArrowLeft} from 'react-icons/bs'
 import { useLoaderData } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import useTitle from '../../hooks/useTitle'
 
 const BlogDetails = () => {
     const data = useLoaderData()
     const { question, answer, img } = data
+    useTitle(question)
     return (
         <div className='max-w-[1200px] mx-auto'>
             <div className="mt-6 ml-32"><Link to='/blogs' className="flex items-center"><BsArrowLeft/>&nbsp; Go Back</Link></div>

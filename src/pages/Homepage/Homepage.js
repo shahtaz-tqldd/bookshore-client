@@ -15,7 +15,7 @@ const Homepage = () => {
   const { data: adsItems = [] } = useQuery({
     queryKey: ["advertised"],
     queryFn: async () => {
-      const res = await fetch('https://bookshore-server-shahtaz-tqldd.vercel.app/products/advertised')
+      const res = await fetch('https://bookshore-server-shahtaz-tqldd.vercel.appproducts/advertised')
       const data = await res.json()
       return data
     }
@@ -31,7 +31,7 @@ const Homepage = () => {
       <div className='max-w-[1200px] mx-auto px-6'>
         <Products />
         <Favourite />
-        {adsItems.length > 0 && <Advertisement adsItems={adsItems} />}
+        {adsItems?.length > 0 && <Advertisement adsItems={adsItems} />}
         <Testimonial />
       </div>
     </>

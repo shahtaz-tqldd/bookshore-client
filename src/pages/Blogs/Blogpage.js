@@ -1,12 +1,14 @@
 import { useQuery } from '@tanstack/react-query'
 import React from 'react'
 import BlogCard from './BlogCard'
+import useTitle from '../../hooks/useTitle'
 
 const Blogpage = () => {
+    useTitle('Blogs')
     const {data: blogs =[]} = useQuery({
         queryKey: ["blogs"],
         queryFn: async()=>{
-            const res = await fetch('https://bookshore-server-shahtaz-tqldd.vercel.app/blogs')
+            const res = await fetch('https://bookshore-server-shahtaz-tqldd.vercel.appblogs')
             const data = await res.json()
             return data
         }

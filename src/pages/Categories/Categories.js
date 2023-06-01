@@ -1,8 +1,10 @@
 import React, { useContext } from 'react'
-import CategoryCard from './components/CategoryCard'
+import CategoryCard from './CategoryCard'
 import { AuthContext } from '../../context/AuthProvider'
+import useTitle from '../../hooks/useTitle'
 
 const Categories = () => {
+    useTitle('Explore Collections')
     const {categories} = useContext(AuthContext)
     return (
         <div className='max-w-[1200px] mx-auto'>

@@ -2,30 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { IoBookSharp } from 'react-icons/io5'
 import { MdLocationPin } from 'react-icons/md'
+import PrimaryButton from '../../../components/Buttons/PrimaryButton'
+import { handleCatColor } from '../../../tools/SwitchCase'
 
 const AdvertiseCard = ({ adItem }) => {
-	const { imgProduct, productName, resalePrice, category, description, originalPrice, location } = adItem
-	let color;
-	switch (category) {
-		case 'Novel':
-			color = 'text-[#19A7CE]'
-			break;
-		case 'Poetry':
-			color = 'text-[#BE5A83]'
-			break;
-		case 'Academic':
-			color = 'text-[#6C9BCF]'
-			break;
-		case 'Non Fiction':
-			color = 'text-[#088395]'
-			break;
-		case 'Research and Journal':
-			color = 'text-[#FF6D60]'
-			break;
-		default:
-			color = 'text-[#F7D060]'
-			break;
-	}
+	const { imgProduct, productName, resalePrice, category, description, originalPrice, location, _id } = adItem
+	const color = handleCatColor(category)
 	return (
 		<div className="h-full flex lg:flex-row md:flex-row flex-col gap-8 bg-[#B5D5C5] lg:p-10 md:p-6 p-4 items-center">
 			<figure className='lg:w-1/3 md:w-1/3 w-full'>
@@ -41,7 +23,9 @@ const AdvertiseCard = ({ adItem }) => {
 					<div className='flex items-center gap-2 mt-6 text-xl'><MdLocationPin /> {location}</div>
 				</div>
 				<div className='mt-auto'>
-					<Link to={`/categories/${category}`} className="btn btn-primary px-10 text-white normal-case">Buy Now</Link>
+					<Link to={`/products/${_id}`}>
+						<PrimaryButton>Buy Now</PrimaryButton>
+					</Link>
 				</div>
 			</div>
 		</div>
