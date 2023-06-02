@@ -5,7 +5,7 @@ const useSeller = (email) =>{
     const [isSellerLoading, setIsSellerLoading] = useState(true)
     useEffect(()=>{
         if(email){
-            fetch(`https://bookshore-server-shahtaz-tqldd.vercel.app/users/seller/${email}`)
+            fetch(`https://bookshore-server.vercel.app/users/seller/${email}`)
                 .then(res=>res.json())
                 .then(data=>{
                     setIsSeller(data.isSeller)

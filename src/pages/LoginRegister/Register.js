@@ -63,7 +63,7 @@ const Register = () => {
 
     }
     const addUserToDB=(dbUserInfo)=>{
-        fetch('https://bookshore-server-shahtaz-tqldd.vercel.app/users',{
+        fetch('https://bookshore-server.vercel.app/users',{
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
@@ -82,11 +82,11 @@ const Register = () => {
             <div className="hero-content flex-col lg:flex-row-reverse w-full">
                 <div className="lg:w-1/2 text-center flex flex-col items-center lg:text-left">
                     <img src={registerImg} alt="login" className='w-2/3' />
-                    <h1 className="text-3xl font-bold pb-32 uppercase">Welcome to <br/> the bookworms club</h1>
+                    <h1 className="text-3xl font-bold pb-32 text-accent uppercase">Welcome to <br/> the bookworms club</h1>
                 </div>
                 <div className="lg:w-1/2 card flex-shrink-0 w-full max-w-md shadow-lg bg-base-100">
                     <div className="card-body">
-                        <h1 className="text-2xl font-bold">Open A New Account</h1>
+                        <h1 className="text-2xl font-bold text-primary">Open A New Account</h1>
                         <form onSubmit={handleSubmit(handleCreateUser)}>
                             {/* name */}
                             <div className="form-control">
@@ -134,12 +134,12 @@ const Register = () => {
                             </div>
                             {/* button */}
                             <div className="form-control mt-6">
-                                <button className="btn btn-primary text-white">Register</button>
+                                <button className="btn btn-primary text-white normal-case">Register</button>
                             </div>
                         </form>
                         <span className='text-center'>or</span>
                         <StartWithGoogle />
-                        <p className='mt-4'>Already have an Account? <Link to='/login' className='text-accent'>Login Here</Link></p>
+                        <p className='mt-4'>Already have an Account? <Link to='/login' className='text-primary'>Login Here</Link></p>
                     </div>
                 </div>
             </div>

@@ -5,7 +5,7 @@ const useVerifiedUser = (email) => {
     const [verifiedUserLoading, setVerifiedUserLoading] = useState(true)
     useEffect(() => {
         if (email) {
-            fetch(`https://bookshore-server-shahtaz-tqldd.vercel.app/users/verified/${email}`)
+            fetch(`https://bookshore-server.vercel.app/users/verified/${email}`)
                 .then(res => res.json())
                 .then(data => {
                     setVerifiedUser(data.verifiedUser)

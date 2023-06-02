@@ -3,12 +3,18 @@ import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthProvider'
 import useSeller from '../../hooks/useSeller';
-import logo from '../../assets/icons/logo.png'
+import logo from '../../assets/icons/logo.webp'
 
 const Navbar = () => {
   const { user, logout, setUser, categories } = useContext(AuthContext)
   const [isSeller] = useSeller(user?.email)
   const navigate = useNavigate();
+  const { setCategory } = useContext(AuthContext)
+
+  const handleMenuNavigate = (categoryName) => {
+    setCategory(categoryName)
+    navigate('/products')
+  }
 
   const navMenuItems = <>
     <li><Link to='/'>Home</Link></li>
@@ -17,14 +23,18 @@ const Navbar = () => {
         Collections
         <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
       </Link>
-      <ul className="p-2 bg-primary">
+      <ul className="p-2 bg-primary z-20">
         {
-          categories?.map(({ categoryName }, index) => <li key={index}><Link to={`/categories/${categoryName}`}>{categoryName}</Link></li>)
+          categories?.map(({ categoryName }, index) => <li key={index}>
+            <span onClick={() => handleMenuNavigate(categoryName)}>
+              {categoryName}
+            </span>
+          </li>)
         }
 
       </ul>
     </li>
-    <li><Link to='/categories'>Books</Link></li>
+    <li onClick={() => setCategory('')}><Link to='/products'>Books</Link></li>
     {isSeller && <li><Link to='/sell-books'>Sell Books</Link></li>}
     <li><Link to='/blogs'>Blogs</Link></li>
     {user?.uid && <li><Link to='/dashboard'>Dashboard</Link></li>}
@@ -62,7 +72,7 @@ const Navbar = () => {
               {navMenuItems}
             </ul>
           </div>
-          <Link to='/' className="text-2xl"><img src={logo} alt="logo" className='h-10 hover:opacity-80' /></Link>
+          <Link to='/' className="text-2xl"><img src={logo} alt="logo" className='h-8 hover:opacity-80 transition duration-300' /></Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0 text-white">
@@ -73,7 +83,7 @@ const Navbar = () => {
           {
             user?.uid ?
               <button onClick={handleLogOut} className='btn btn-error text-white normal-case rounded-full px-8'>Logout</button>
-              : <Link to='/login' className="btn btn-warning rounded-full px-8 normal-case">Sign in</Link>
+              : <Link to='/login' className="btn btn-secondary rounded-full px-8 normal-case">Sign in</Link>
           }
 
         </div>

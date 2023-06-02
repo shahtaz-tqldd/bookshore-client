@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import BlogDetails from "../pages/Blogs/BlogDetails";
 import Blogpage from "../pages/Blogs/Blogpage";
 import Categories from "../pages/Categories/Categories";
-import ProductPage from "../pages/Categories/components/Products/ProductPage";
 import AllProducts from "../pages/Dashboard/AllProducts";
 import AllUsers from "../pages/Dashboard/AllUsers";
 import BookedProducts from "../pages/Dashboard/BookedProducts";
@@ -18,6 +17,9 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import Main from "../layouts/Main";
 import PrivateRoute from "./PrivateRoute";
 import SellerRoute from "./SellerRoute";
+import Products from "../pages/Products/Products";
+import ProductPage from "../pages/Products/ProductPage/ProductPage";
+import Checkout from "../pages/Checkout/Checkout";
 
 export const routes = createBrowserRouter([
 	{
@@ -33,9 +35,18 @@ export const routes = createBrowserRouter([
 				element: <Categories />
 			},
 			{
-				path: '/categories/:name',
+				path: '/products',
+				element: <Products />
+			},
+			{
+				path: '/products/checkout/:id',
 				element: <ProductPage />,
-				loader: (params) => { return params }
+				loader: ({ params }) => fetch(`https://bookshore-server.vercel.app/products/checkout/${params.id}`)
+			},
+			{
+				path: '/checkout/:id',
+				element: <PrivateRoute><Checkout /></PrivateRoute>,
+				loader: ({ params }) => fetch(`https://bookshore-server.vercel.app/products/${params.id}`)
 			},
 			{
 				path: '/sell-books',
@@ -48,7 +59,7 @@ export const routes = createBrowserRouter([
 			{
 				path: '/blogs/:id',
 				element: <BlogDetails />,
-				loader: ({ params }) => fetch(`https://bookshore-server-shahtaz-tqldd.vercel.app/blogs/${params.id}`)
+				loader: ({ params }) => fetch(`https://bookshore-server.vercel.app/blogs/${params.id}`)
 			},
 			{
 				path: '/login',
@@ -91,3 +102,5 @@ export const routes = createBrowserRouter([
 		]
 	}
 ]);
+
+// https://bookshore-server.vercel.app/

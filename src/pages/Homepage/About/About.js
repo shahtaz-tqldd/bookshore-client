@@ -36,19 +36,19 @@ const About = () => {
 					<h1 className="lg:text-5xl text-3xl font-bold mb-16 max-w-[650px]">Bookshore is your <span className='text-warning'>one stop solution</span> for exchanging books</h1>
 					<div className='grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-12'>
 						{features?.map(({ id, title, icon, details }) => (
-							<div key={id}>
+							<aside key={id}>
 								<div className='flex gap-4 items-start'>
 									<lord-icon
 										src={icon}
-										target="section"
+										target="aside"
 										trigger="hover"
-										colors="primary:#B5F1CC"
+										colors="primary:#fff"
 										style={{ width: "60px", height: "60px" }}>
 									</lord-icon>
-									<h2 className='text-2xl font-bold text-[#B5F1CC] w-40'>{title}</h2>
+									<h2 className='text-2xl font-bold text-white w-40'>{title}</h2>
 								</div>
-								<p className='p-3'>{details}</p>
-							</div>
+								<p className='p-3 text-[#ddd]'>{details}</p>
+							</aside>
 						))}
 					</div>
 				</div>
