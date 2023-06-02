@@ -15,7 +15,7 @@ const Homepage = () => {
   const { data: adsItems = [] } = useQuery({
     queryKey: ["advertised"],
     queryFn: async () => {
-      const res = await fetch('https://bookshore-server-shahtaz-tqldd.vercel.appproducts/advertised')
+      const res = await fetch('https://bookshore-server.vercel.app/products/advertised')
       const data = await res.json()
       return data
     }

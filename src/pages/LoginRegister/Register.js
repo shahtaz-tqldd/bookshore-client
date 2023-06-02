@@ -63,7 +63,7 @@ const Register = () => {
 
     }
     const addUserToDB=(dbUserInfo)=>{
-        fetch('https://bookshore-server-shahtaz-tqldd.vercel.appusers',{
+        fetch('https://bookshore-server.vercel.app/users',{
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'

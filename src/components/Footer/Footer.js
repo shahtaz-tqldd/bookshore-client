@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import footerIcon from '../../assets/icons/logo.png'
+import footerIcon from '../../assets/icons/logo.webp'
 
 const Footer = () => {
     return (

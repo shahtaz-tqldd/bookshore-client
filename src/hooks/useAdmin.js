@@ -5,7 +5,7 @@ const useAdmin = email => {
     const [isAdminLoading, setIsAdminLoading] = useState(true)
     useEffect(() => {
         if (email) {
-            fetch(`https://bookshore-server-shahtaz-tqldd.vercel.appusers/admin/${email}`)
+            fetch(`https://bookshore-server.vercel.app/users/admin/${email}`)
                 .then(res => res.json())
                 .then(data => {
                     setIsAdmin(data.isAdmin)

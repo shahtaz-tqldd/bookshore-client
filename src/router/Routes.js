@@ -39,14 +39,14 @@ export const routes = createBrowserRouter([
 				element: <Products />
 			},
 			{
-				path: '/products/:id',
+				path: '/products/checkout/:id',
 				element: <ProductPage />,
-				loader: ({ params }) => fetch(`https://bookshore-server-shahtaz-tqldd.vercel.appproducts/${params.id}`)
+				loader: ({ params }) => fetch(`https://bookshore-server.vercel.app/products/checkout/${params.id}`)
 			},
 			{
 				path: '/checkout/:id',
 				element: <PrivateRoute><Checkout /></PrivateRoute>,
-				loader: ({ params }) => fetch(`https://bookshore-server-shahtaz-tqldd.vercel.appproducts/${params.id}`)
+				loader: ({ params }) => fetch(`https://bookshore-server.vercel.app/products/${params.id}`)
 			},
 			{
 				path: '/sell-books',
@@ -59,7 +59,7 @@ export const routes = createBrowserRouter([
 			{
 				path: '/blogs/:id',
 				element: <BlogDetails />,
-				loader: ({ params }) => fetch(`https://bookshore-server-shahtaz-tqldd.vercel.appblogs/${params.id}`)
+				loader: ({ params }) => fetch(`https://bookshore-server.vercel.app/blogs/${params.id}`)
 			},
 			{
 				path: '/login',
@@ -102,3 +102,5 @@ export const routes = createBrowserRouter([
 		]
 	}
 ]);
+
+// https://bookshore-server.vercel.app/

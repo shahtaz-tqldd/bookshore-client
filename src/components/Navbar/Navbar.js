@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthProvider'
 import useSeller from '../../hooks/useSeller';
-import logo from '../../assets/icons/logo.png'
+import logo from '../../assets/icons/logo.webp'
 
 const Navbar = () => {
   const { user, logout, setUser, categories } = useContext(AuthContext)
@@ -72,7 +72,7 @@ const Navbar = () => {
               {navMenuItems}
             </ul>
           </div>
-          <Link to='/' className="text-2xl"><img src={logo} alt="logo" className='h-10 hover:opacity-80' /></Link>
+          <Link to='/' className="text-2xl"><img src={logo} alt="logo" className='h-8 hover:opacity-80 transition duration-300' /></Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0 text-white">

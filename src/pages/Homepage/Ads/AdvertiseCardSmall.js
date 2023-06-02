@@ -8,7 +8,8 @@ const AdvertiseCardSmall = ({ adItem, index }) => {
 	const { imgProduct, productName, resalePrice, category, originalPrice, location, _id } = adItem
 	const color = handleCatColor(category)
 	return (
-		<div className={`lg:w-full md:w-1/2 w-full flex gap-4 p-4 ${(index === 0 && 'bg-[#FFD4B2]') || (index === 1 && 'bg-[#FCFFB2]')}`}>
+		<div
+			className={`rounded-xl lg:w-full md:w-1/2 w-full flex gap-4 p-4 ${(index === 0 && 'bg-[#ECC9EE] hover:bg-[#d8b3da]') || (index === 1 && 'bg-[#FCFFB2] hover:bg-[#f7fa9f]')} transition duration-300`}>
 			<figure className='w-1/3'>
 				<img src={imgProduct} className="w-full" alt={productName} />
 			</figure>
@@ -21,7 +22,7 @@ const AdvertiseCardSmall = ({ adItem, index }) => {
 					<div className='flex items-center gap-2 mt-4'><MdLocationPin /> {location}</div>
 				</div>
 				<div className='mt-auto'>
-					<Link to={`/products/${_id}`} className="btn btn-primary text-white px-5 btn-sm rounded-full normal-case">Buy Now</Link>
+					<Link to={`/products/checkout/${_id}`} className="btn btn-primary text-white px-5 btn-sm rounded-full normal-case">Buy Now</Link>
 				</div>
 			</div>
 		</div>

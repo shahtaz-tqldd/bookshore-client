@@ -25,7 +25,7 @@ const Checkout = () => {
       buyingDate,
       buyingTime
     }
-    fetch('https://bookshore-server-shahtaz-tqldd.vercel.appproducts/booked', {
+    fetch('https://bookshore-server.vercel.app/products/booked', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -42,7 +42,7 @@ const Checkout = () => {
   }
 
   const soldStatusToDB = (id) => {
-    fetch(`https://bookshore-server-shahtaz-tqldd.vercel.appproducts/${id}`, {
+    fetch(`https://bookshore-server.vercel.app/products/${id}`, {
       method: 'PUT',
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`

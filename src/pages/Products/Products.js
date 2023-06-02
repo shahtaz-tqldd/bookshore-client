@@ -3,10 +3,8 @@ import useTitle from '../../hooks/useTitle';
 import ProductCard from './ProductCard';
 import axios from 'axios';
 import { AuthContext } from '../../context/AuthProvider';
-import './products.css'
 
 const Products = () => {
-  const [product, setProduct] = useState(null);
   const [products, setProducts] = useState(null);
   const { categories, category, setCategory } = useContext(AuthContext)
   useTitle('Product');
@@ -14,7 +12,7 @@ const Products = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const url = `https://bookshore-server-shahtaz-tqldd.vercel.appproducts?category=${category}`;
+        const url = `https://bookshore-server.vercel.app/products?category=${category}`;
         const response = await axios.get(url);
         setProducts(response.data);
       } catch (error) {
@@ -50,7 +48,6 @@ const Products = () => {
             <ProductCard
               key={product._id}
               product={product}
-              setProduct={setProduct}
             />
           ))
         }

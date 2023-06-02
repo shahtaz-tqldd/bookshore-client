@@ -12,7 +12,7 @@ const SellerProducts = () => {
     const { data: products = [], refetch } = useQuery({
         queryKey: ["products", user?.email],
         queryFn: async () => {
-            const res = await fetch(`https://bookshore-server-shahtaz-tqldd.vercel.appmy-products?email=${user?.email}`, {
+            const res = await fetch(`https://bookshore-server.vercel.app/my-products?email=${user?.email}`, {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`
                 }
@@ -24,7 +24,7 @@ const SellerProducts = () => {
 
     // remove product 
     const handleRemoveProduct = (product) => {
-        fetch(`https://bookshore-server-shahtaz-tqldd.vercel.appproducts/remove/${product._id}`, {
+        fetch(`https://bookshore-server.vercel.app/products/remove/${product._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -42,7 +42,7 @@ const SellerProducts = () => {
 
     // advertise product
     const handleAdvertiseProduct = (productInfo) => {
-        fetch('https://bookshore-server-shahtaz-tqldd.vercel.appproducts/advertised', {
+        fetch('https://bookshore-server.vercel.app/products/advertised', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',
@@ -65,7 +65,7 @@ const SellerProducts = () => {
     // change advertisement status to db
     // need to solve----------
     const advertiseStatusToDB = (id) => {
-        fetch(`https://bookshore-server-shahtaz-tqldd.vercel.appproducts/advertise/${id}`, {
+        fetch(`https://bookshore-server.vercel.app/products/advertise/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`

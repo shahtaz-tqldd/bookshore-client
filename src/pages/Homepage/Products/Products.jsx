@@ -6,7 +6,7 @@ import { AuthContext } from '../../../context/AuthProvider'
 
 const Products = () => {
 	const {setCategory} = useContext(AuthContext)
-	const url = `https://bookshore-server-shahtaz-tqldd.vercel.appproducts/`
+	const url = `https://bookshore-server.vercel.app/products/`
 	const { data: products = [] } = useQuery({
 		queryKey: ['products'],
 		queryFn: async () => {

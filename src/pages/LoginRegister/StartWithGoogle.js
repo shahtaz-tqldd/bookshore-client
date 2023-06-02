@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import toast from 'react-hot-toast'
 import { useLocation, useNavigate } from 'react-router-dom'
-import google from '../../assets/icons/google.png'
+import google from '../../assets/icons/google.webp'
 import { AuthContext } from '../../context/AuthProvider'
 
 const StartWithGoogle = () => {
@@ -27,7 +27,7 @@ const StartWithGoogle = () => {
             .catch(err => console.error(err))
     }
     const addUserToDB = (userInfo) => {
-        fetch('https://bookshore-server-shahtaz-tqldd.vercel.appusers', {
+        fetch('https://bookshore-server.vercel.app/users', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
